@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F15A60FE-C55C-4C19-8454-56E84E095060}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OPC_UA_Client_Lib</RootNamespace>
+    <AssemblyName>OPC-UA-Client-Lib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Opc.Ua.Client">
+      <HintPath>..\..\OPC-Foundation-Labs-.Net-4.8\bin\Debug\Opc.Ua.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.ClientControls">
+      <HintPath>..\..\OPC-Foundation-Labs-.Net-4.8\bin\Debug\Opc.Ua.ClientControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Configuration">
+      <HintPath>..\..\OPC-Foundation-Labs-.Net-4.8\bin\Debug\Opc.Ua.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Core">
+      <HintPath>..\..\OPC-Foundation-Labs-.Net-4.8\bin\Debug\Opc.Ua.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Server">
+      <HintPath>..\..\OPC-Foundation-Labs-.Net-4.8\bin\Debug\Opc.Ua.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\ConfigHelper.cs" />
+    <Compile Include="Helpers\DataTypesHelper.cs" />
+    <Compile Include="Managers\ConnectivityManager.cs" />
+    <Compile Include="Managers\NodeManager.cs" />
+    <Compile Include="UaClient.cs" />
+    <Compile Include="Managers\SubscriptionsManager.cs" />
+    <Compile Include="Filters\FilterDefinition.cs" />
+    <Compile Include="Helpers\AppUtils.cs" />
+    <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DB.ModelLib\DB.ModelLib.csproj">
+      <Project>{4327994d-740d-405f-aee5-e4c8c5b4ad95}</Project>
+      <Name>DB.ModelLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OPCFoundation.ServerLib\OPCFoundation.ServerLib.csproj">
+      <Project>{a8b03e62-57b3-422b-91f0-e0b2a4065ec5}</Project>
+      <Name>OPCFoundation.ServerLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

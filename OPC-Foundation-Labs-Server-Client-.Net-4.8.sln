@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "opc-bin", "opc-bin", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCFoundation.ServerLib", "OPCFoundation.ServerLib\OPCFoundation.ServerLib.csproj", "{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCFoundation.ClientLib", "OPCFoundation.ClientLib\OPCFoundation.ClientLib.csproj", "{F15A60FE-C55C-4C19-8454-56E84E095060}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "extern-bin", "extern-bin", "{F85778C2-B8D7-4F8A-B785-DDAB4094994E}"
+	ProjectSection(SolutionItems) = preProject
+		extern-bin\Interop.ActiveDs.dll = extern-bin\Interop.ActiveDs.dll
+		extern-bin\Interop.NetFwTypeLib.dll = extern-bin\Interop.NetFwTypeLib.dll
+		extern-bin\Opc.Ua.ComInterop.dll = extern-bin\Opc.Ua.ComInterop.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.ModelLib", "DB.ModelLib\DB.ModelLib.csproj", "{4327994D-740D-405F-AEE5-E4C8C5B4AD95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{1C875AF9-3B8E-43B6-923F-5349FDD20721}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SQL.GenericUAServer", "SQL.GenericUAServer\SQL.GenericUAServer.sqlproj", "{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.GenericUAServer", "Model.GenericUAServer\Model.GenericUAServer.csproj", "{57455BC6-1855-437A-BB00-BFF85D3AC354}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15A60FE-C55C-4C19-8454-56E84E095060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15A60FE-C55C-4C19-8454-56E84E095060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15A60FE-C55C-4C19-8454-56E84E095060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15A60FE-C55C-4C19-8454-56E84E095060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{57455BC6-1855-437A-BB00-BFF85D3AC354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57455BC6-1855-437A-BB00-BFF85D3AC354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57455BC6-1855-437A-BB00-BFF85D3AC354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57455BC6-1855-437A-BB00-BFF85D3AC354}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
+		{F15A60FE-C55C-4C19-8454-56E84E095060} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E} = {1C875AF9-3B8E-43B6-923F-5349FDD20721}
+		{57455BC6-1855-437A-BB00-BFF85D3AC354} = {1C875AF9-3B8E-43B6-923F-5349FDD20721}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA41AE0D-234E-4311-AC9F-AE8F280F56C5}
+	EndGlobalSection
+EndGlobal

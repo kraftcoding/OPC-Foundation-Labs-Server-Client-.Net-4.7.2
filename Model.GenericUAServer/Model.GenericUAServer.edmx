@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GenericUAServerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ReadingsData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="BoolFieldName6" Type="bit" />
+          <Property Name="StringFieldName6" Type="varchar" MaxLength="200" />
+          <Property Name="ByteFieldName6" Type="varchar" MaxLength="10" />
+          <Property Name="ByteStringFieldName6" Type="varchar" MaxLength="200" />
+          <Property Name="DateTimeFieldName6" Type="datetime" />
+          <Property Name="DoubleFieldName6" Type="float" />
+          <Property Name="BoolFieldName5" Type="bit" />
+          <Property Name="StringFieldName5" Type="varchar" MaxLength="200" />
+          <Property Name="ByteFieldName5" Type="varchar" MaxLength="10" />
+          <Property Name="ByteStringFieldName5" Type="varchar" MaxLength="200" />
+          <Property Name="DateTimeFieldName5" Type="datetime" />
+          <Property Name="DoubleFieldName5" Type="float" />
+          <Property Name="BoolFieldName4" Type="bit" />
+          <Property Name="StringFieldName4" Type="varchar" MaxLength="200" />
+          <Property Name="ByteFieldName4" Type="varchar" MaxLength="10" />
+          <Property Name="ByteStringFieldName4" Type="varchar" MaxLength="200" />
+          <Property Name="DateTimeFieldName4" Type="datetime" />
+          <Property Name="DoubleFieldName4" Type="float" />
+          <Property Name="BoolFieldName3" Type="bit" />
+          <Property Name="StringFieldName3" Type="varchar" MaxLength="200" />
+          <Property Name="ByteFieldName3" Type="varchar" MaxLength="10" />
+          <Property Name="ByteStringFieldName3" Type="varchar" MaxLength="200" />
+          <Property Name="DateTimeFieldName3" Type="datetime" />
+          <Property Name="DoubleFieldName3" Type="float" />
+          <Property Name="BoolFieldName2" Type="bit" />
+          <Property Name="StringFieldName2" Type="varchar" MaxLength="200" />
+          <Property Name="ByteFieldName2" Type="varchar" MaxLength="10" />
+          <Property Name="ByteStringFieldName2" Type="varchar" MaxLength="200" />
+          <Property Name="DateTimeFieldName2" Type="datetime" />
+          <Property Name="DoubleFieldName2" Type="float" />
+          <Property Name="BoolFieldName1" Type="bit" />
+          <Property Name="StringFieldName1" Type="varchar" MaxLength="200" />
+          <Property Name="ByteFieldName1" Type="varchar" MaxLength="10" />
+          <Property Name="ByteStringFieldName1" Type="varchar" MaxLength="200" />
+          <Property Name="DateTimeFieldName1" Type="datetime" />
+          <Property Name="DoubleFieldName1" Type="float" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProcess" Type="nvarchar" MaxLength="50" />
+          <Property Name="processStartDate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="GenericUAServerDBModelStoreContainer">
+          <EntitySet Name="ReadingsData" EntityType="Self.ReadingsData" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GenericUAServerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ReadingsData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="BoolFieldName6" Type="Boolean" />
+          <Property Name="StringFieldName6" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ByteFieldName6" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ByteStringFieldName6" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeFieldName6" Type="DateTime" Precision="3" />
+          <Property Name="DoubleFieldName6" Type="Double" />
+          <Property Name="BoolFieldName5" Type="Boolean" />
+          <Property Name="StringFieldName5" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ByteFieldName5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ByteStringFieldName5" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeFieldName5" Type="DateTime" Precision="3" />
+          <Property Name="DoubleFieldName5" Type="Double" />
+          <Property Name="BoolFieldName4" Type="Boolean" />
+          <Property Name="StringFieldName4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ByteFieldName4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ByteStringFieldName4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeFieldName4" Type="DateTime" Precision="3" />
+          <Property Name="DoubleFieldName4" Type="Double" />
+          <Property Name="BoolFieldName3" Type="Boolean" />
+          <Property Name="StringFieldName3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ByteFieldName3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ByteStringFieldName3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeFieldName3" Type="DateTime" Precision="3" />
+          <Property Name="DoubleFieldName3" Type="Double" />
+          <Property Name="BoolFieldName2" Type="Boolean" />
+          <Property Name="StringFieldName2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ByteFieldName2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ByteStringFieldName2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeFieldName2" Type="DateTime" Precision="3" />
+          <Property Name="DoubleFieldName2" Type="Double" />
+          <Property Name="BoolFieldName1" Type="Boolean" />
+          <Property Name="StringFieldName1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ByteFieldName1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ByteStringFieldName1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeFieldName1" Type="DateTime" Precision="3" />
+          <Property Name="DoubleFieldName1" Type="Double" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProcess" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="processStartDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="GenericUAServerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ReadingsData" EntityType="Self.ReadingsData" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GenericUAServerDBModelStoreContainer" CdmEntityContainer="GenericUAServerDBEntities">
+          <EntitySetMapping Name="ReadingsData">
+            <EntityTypeMapping TypeName="GenericUAServerDBModel.ReadingsData">
+              <MappingFragment StoreEntitySet="ReadingsData">
+                <ScalarProperty Name="processStartDate" ColumnName="processStartDate" />
+                <ScalarProperty Name="idProcess" ColumnName="idProcess" />
+                <ScalarProperty Name="BoolFieldName6" ColumnName="BoolFieldName6" />
+                <ScalarProperty Name="StringFieldName6" ColumnName="StringFieldName6" />
+                <ScalarProperty Name="ByteFieldName6" ColumnName="ByteFieldName6" />
+                <ScalarProperty Name="ByteStringFieldName6" ColumnName="ByteStringFieldName6" />
+                <ScalarProperty Name="DateTimeFieldName6" ColumnName="DateTimeFieldName6" />
+                <ScalarProperty Name="DoubleFieldName6" ColumnName="DoubleFieldName6" />
+                <ScalarProperty Name="BoolFieldName5" ColumnName="BoolFieldName5" />
+                <ScalarProperty Name="StringFieldName5" ColumnName="StringFieldName5" />
+                <ScalarProperty Name="ByteFieldName5" ColumnName="ByteFieldName5" />
+                <ScalarProperty Name="ByteStringFieldName5" ColumnName="ByteStringFieldName5" />
+                <ScalarProperty Name="DateTimeFieldName5" ColumnName="DateTimeFieldName5" />
+                <ScalarProperty Name="DoubleFieldName5" ColumnName="DoubleFieldName5" />
+                <ScalarProperty Name="BoolFieldName4" ColumnName="BoolFieldName4" />
+                <ScalarProperty Name="StringFieldName4" ColumnName="StringFieldName4" />
+                <ScalarProperty Name="ByteFieldName4" ColumnName="ByteFieldName4" />
+                <ScalarProperty Name="ByteStringFieldName4" ColumnName="ByteStringFieldName4" />
+                <ScalarProperty Name="DateTimeFieldName4" ColumnName="DateTimeFieldName4" />
+                <ScalarProperty Name="DoubleFieldName4" ColumnName="DoubleFieldName4" />
+                <ScalarProperty Name="BoolFieldName3" ColumnName="BoolFieldName3" />
+                <ScalarProperty Name="StringFieldName3" ColumnName="StringFieldName3" />
+                <ScalarProperty Name="ByteFieldName3" ColumnName="ByteFieldName3" />
+                <ScalarProperty Name="ByteStringFieldName3" ColumnName="ByteStringFieldName3" />
+                <ScalarProperty Name="DateTimeFieldName3" ColumnName="DateTimeFieldName3" />
+                <ScalarProperty Name="DoubleFieldName3" ColumnName="DoubleFieldName3" />
+                <ScalarProperty Name="BoolFieldName2" ColumnName="BoolFieldName2" />
+                <ScalarProperty Name="StringFieldName2" ColumnName="StringFieldName2" />
+                <ScalarProperty Name="ByteFieldName2" ColumnName="ByteFieldName2" />
+                <ScalarProperty Name="ByteStringFieldName2" ColumnName="ByteStringFieldName2" />
+                <ScalarProperty Name="DateTimeFieldName2" ColumnName="DateTimeFieldName2" />
+                <ScalarProperty Name="DoubleFieldName2" ColumnName="DoubleFieldName2" />
+                <ScalarProperty Name="BoolFieldName1" ColumnName="BoolFieldName1" />
+                <ScalarProperty Name="StringFieldName1" ColumnName="StringFieldName1" />
+                <ScalarProperty Name="ByteFieldName1" ColumnName="ByteFieldName1" />
+                <ScalarProperty Name="ByteStringFieldName1" ColumnName="ByteStringFieldName1" />
+                <ScalarProperty Name="DateTimeFieldName1" ColumnName="DateTimeFieldName1" />
+                <ScalarProperty Name="DoubleFieldName1" ColumnName="DoubleFieldName1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
