@@ -1,17 +1,23 @@
 ﻿using DB.ModelLib.Managers;
-using OPCFoundation.ServerLib.Init;
 using Opc.Ua;
+using Opc.Ua.Configuration;
 using OPCFoundation.ClientLib.Client;
 using OPCFoundation.ClientLib.Helpers;
+using OPCFoundation.ServerLib.Init;
+using OPCFoundation.TaskLib.Base;
 using System;
 using System.Collections.Generic;
-using OPCFoundation.TaskLib.Base;
+using System.Threading;
 using TasksLib.Tasks;
 
 namespace OPCFoundation.ServerLib.Jobs
 {
     public class SuscribeNodesClientJob : TaskBase
     {
+        public static ApplicationInstance application;
+        public static string JobName = "OPC UA Suscriber Client";
+        public static CancellationTokenSource tokenSrc;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>  
@@ -51,7 +57,7 @@ namespace OPCFoundation.ServerLib.Jobs
                     Client.CreateSubscription(nodeId, "NODE #" + nodeId + "#", subsDictionary, MonitoringMode.Reporting);
                 
                 ClientTask TplTsk = new ClientTask();
-                TplTsk.Launch(Client, 1000, "CLIENT (" + appName + ")");
+                TplTsk.Launch(Client, 1000, "CLIENT (" + appName + ")", tokenSrc);
             }
             catch (Exception exception)
             {
@@ -60,6 +66,19 @@ namespace OPCFoundation.ServerLib.Jobs
             finally
             {
                 Client.DisconnectEndPoint();
+            }
+
+        }
+
+        public static void Stop()
+        {
+            try
+            {
+                application.Stop();
+            }
+            catch (Exception e)
+            {
+                Utils.Trace("Error: " + e.ToString());
             }
         }
     }

@@ -8,28 +8,17 @@ namespace TasksLib.Tasks
 {
     public static class ServerTask
     {
-        public static async Task Launch(ApplicationInstance app, int msec, string taskname)
+        public static async Task Launch(ApplicationInstance app, int msec, string taskname, CancellationTokenSource cancellationTokenSource)
         {
-            var cancellationTokenSource = new CancellationTokenSource();
-            var token = cancellationTokenSource.Token;
-
-            Task.Run(() =>
-            {
-                Console.WriteLine("Task is RUNNING: " + taskname);                
-                bool result = false;
-                do
-                {
-                    Console.WriteLine("Enter 'true' to stop...");
-                    bool.TryParse(Console.ReadLine(), out result);
-                } while (!result);
-
-                if (result) cancellationTokenSource.Cancel();
-            });
+            var token = cancellationTokenSource.Token;           
 
             try
             {
                 Utils.Trace("Starting long-running task...");
                 await LongRunningTaskAsync(token, app, msec);
+                
+                // Check if cancellation is requested
+                token.ThrowIfCancellationRequested();
             }
             catch (OperationCanceledException)
             {
@@ -50,11 +39,7 @@ namespace TasksLib.Tasks
         internal static async Task LongRunningTaskAsync(CancellationToken token, ApplicationInstance app, int msec)
         {
             do
-            {
-                // Check if cancellation is requested
-                token.ThrowIfCancellationRequested();
-
-                // ... call here the sub-procedure
+            {  
                 SubProcedure(app, msec);
             }
             while (!token.IsCancellationRequested);

@@ -10,6 +10,8 @@ namespace OPCFoundation.ServerLib.Jobs
 {
     public static class NodeReadClientJob
     {
+        public static string JobName = "OPC UA Node Read Client";
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>  

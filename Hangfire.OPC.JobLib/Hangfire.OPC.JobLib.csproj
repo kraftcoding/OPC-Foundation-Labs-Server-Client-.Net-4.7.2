@@ -58,7 +58,6 @@
     <Compile Include="Jobs\NodeReadClientJob.cs" />
     <Compile Include="Jobs\SuscribeNodesClientJob.cs" />
     <Compile Include="Jobs\ServerJob.cs" />
-    <Compile Include="Jobs\TestService.cs" />
     <Compile Include="Model\JobType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

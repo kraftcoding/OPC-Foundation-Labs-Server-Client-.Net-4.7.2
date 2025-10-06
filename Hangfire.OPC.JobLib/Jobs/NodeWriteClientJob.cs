@@ -10,12 +10,17 @@ namespace OPCFoundation.ServerLib.Jobs
 {
     public static class NodeWriteClientJob
     {
+        public static string JobName = "OPC UA Node Write Client";
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>        
         public static void Init(string configFile)
         {
-            #region Global variables
+
+             
+
+        #region Global variables
 
             //Params
             bool p_useSecurity = false;
