@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Hangfire.OPC.JobLib</RootNamespace>
     <AssemblyName>Hangfire.OPC.JobLib</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -63,19 +63,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\OPC Foundation\SampleApplications\SDK\Client\UA Client Library.csproj">
+    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\SDK\Client\UA Client Library.csproj">
       <Project>{42e9198c-ed2c-4bc8-b0a1-55d91d8f1e90}</Project>
       <Name>UA Client Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\OPC Foundation\SampleApplications\SDK\Configuration\UA Configuration Library.csproj">
+    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\SDK\Configuration\UA Configuration Library.csproj">
       <Project>{8ab4cb8e-e216-425d-b600-350d0b6b59cd}</Project>
       <Name>UA Configuration Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\OPC Foundation\SampleApplications\SDK\Server\UA Server Library.csproj">
+    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\SDK\Controls\UA Client Controls.csproj">
+      <Project>{a247d2ee-14fc-463d-a9ba-6cff1ef22b7a}</Project>
+      <Name>UA Client Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\SDK\Server\UA Server Library.csproj">
       <Project>{e16f908b-c338-4b0c-9e72-2adad8fb98d5}</Project>
       <Name>UA Server Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\OPC Foundation\Stack\Core\UA Core Library.csproj">
+    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\Stack\Core\UA Core Library.csproj">
       <Project>{7543afcb-f5af-44af-83c9-23164474c1e9}</Project>
       <Name>UA Core Library</Name>
     </ProjectReference>

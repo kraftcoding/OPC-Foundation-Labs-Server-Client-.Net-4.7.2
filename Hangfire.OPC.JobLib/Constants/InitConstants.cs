@@ -5,7 +5,7 @@
         #region Config files paths
 
         // This must be changed to the correct path where the final config files are located
-        public const string PATH_CONFIG_FILES = @"C:\Users\IElguezabalEXT\source\repos\OPC UA\UA-.NET_Tests\OPCFoundation-Client-Server-NET-Framework-4.5.1\OPCFoundation.ServerLib\ConfigFiles\";
+        public const string PATH_CONFIG_FILES = @"C:\Users\IElguezabalEXT\source\repos\OPC UA\OPC Labs\OPC-Foundation-Labs-Server-Client-.Net-4.8\Hangfire.OPC.JobLib\ConfigFiles\";
 
         public const string SERVER_JOB_FILE = "Hangfire.ServerJob.Config.xml";
         public const string SUBSCRIBE_NODES_CLIENT_JOB_FILE = "Hangfire.SuscribeNodesClientJob.Config.xml";
