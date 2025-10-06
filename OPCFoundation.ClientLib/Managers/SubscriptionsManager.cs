@@ -103,7 +103,7 @@ namespace OPCFoundation.ClientLib.Controllers
                 var message = System.String.Format("Event called for Variable \"{0}\" with Value = {1}",
                                             monitoredItem.DisplayName, notification.Value);
                 Utils.Trace(message);
-
+                                
                 m_context.UpdateReadingsDataMemory(monitoredItem.ResolvedNodeId.Identifier.ToString(), notification.Value);  
             }
         }

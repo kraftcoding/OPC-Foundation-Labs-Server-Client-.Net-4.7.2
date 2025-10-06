@@ -1,17 +1,15 @@
 ﻿using Model.GenericUAServer;
 using Opc.Ua;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DB.ModelLib.Managers
 {
     public class ProcessModelContext
     {
         public ReadingsData RData { get; set; }
+        public bool m_db_upddate = false;
 
         public ProcessModelContext() 
         {
@@ -170,34 +168,45 @@ namespace DB.ModelLib.Managers
                 }
             }
 
+            m_db_upddate = true;
         }
 
         public void InsertReadingsData()
         {
-            using (var db = new GenericUAServerDBEntities())
+            if (m_db_upddate)
             {
-                ReadingsData db_data = db.ReadingsData.Where(r => r.idProcess == RData.idProcess).FirstOrDefault();
-               
-                if (db_data == null)
+                using (var db = new GenericUAServer())
                 {
-                    RData.processStartDate = DateTime.Now;
-                    db.ReadingsData.Add(RData);
-                }
-                else
-                {
-                    db.ReadingsData.AddOrUpdate(RData);
-                }
+                    try
+                    {
+                        IQueryable<ReadingsData> iQReadingsData = db.ReadingsData.Where(r => r.idProcess == RData.idProcess);
 
-                db.SaveChanges();
-            }
+                        if (iQReadingsData == null)
+                        {
+                            RData.processStartDate = DateTime.Now;
+                            db.ReadingsData.Add(RData);
+                        }
+                        else
+                        {
+                            db.ReadingsData.AddOrUpdate(RData);
+                        }
+
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.Trace("Error: failed to complete database operations. " + ex.ToString());
+                    }
+                }
+            }            
         }
 
-        public async Task<IEnumerable<ReadingsData>> GetReadingsData()
-        {
-            using (var db = new GenericUAServerDBEntities())
-            {   
-                return (IEnumerable<ReadingsData>)db.ReadingsData.ToListAsync<ReadingsData>();
-            }
-        }
+        //public async Task<IEnumerable<ReadingsData>> GetReadingsData()
+        //{
+        //    using (var db = new GenericUAServerDBEntities())
+        //    {   
+        //        return (IEnumerable<ReadingsData>)db.ReadingsData.ToListAsync<ReadingsData>();
+        //    }
+        //}
     }
 }

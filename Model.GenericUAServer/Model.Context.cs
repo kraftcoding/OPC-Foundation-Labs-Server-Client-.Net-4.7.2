@@ -13,10 +13,10 @@ namespace Model.GenericUAServer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GenericUAServerDBEntities : DbContext
+    public partial class GenericUAServer : DbContext
     {
-        public GenericUAServerDBEntities()
-            : base("name=GenericUAServerDBEntities")
+        public GenericUAServer()
+            : base("name=GenericUAServerConnString")
         {
         }
     

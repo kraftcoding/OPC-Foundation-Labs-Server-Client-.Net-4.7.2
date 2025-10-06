@@ -18,7 +18,7 @@ namespace OPCFoundation.ClientLib.Client
         private ApplicationInstance application;        
         private string m_endPoint;        
         private ConnectivityManager ConnCtrl;
-        public ProcessModelContext m_context;
+        public ProcessModelContext m_context;        
         #endregion
 
         public UaClient(int baseAddressId, string ApplicationName, string ConfigSectionName, ProcessModelContext context, string customConfigPath)

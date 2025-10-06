@@ -63,7 +63,7 @@
       <Name>UA Core Library</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model.GenericUAServer\Model.GenericUAServer.csproj">
-      <Project>{57455bc6-1855-437a-bb00-bff85d3ac354}</Project>
+      <Project>{3af79d55-357e-4e50-9348-783b63705756}</Project>
       <Name>Model.GenericUAServer</Name>
     </ProjectReference>
   </ItemGroup>

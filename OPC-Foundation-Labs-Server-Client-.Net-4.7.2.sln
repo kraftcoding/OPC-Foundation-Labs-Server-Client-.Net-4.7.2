@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Server Library", "..\OPC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UA Core Library", "..\OPC-Foundation-Labs-.Net-4.8\Stack\Core\UA Core Library.csproj", "{7543AFCB-F5AF-44AF-83C9-23164474C1E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.GenericUAServer", "Model.GenericUAServer\Model.GenericUAServer.csproj", "{3AF79D55-357E-4E50-9348-783B63705756}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,10 @@ Global
 		{7543AFCB-F5AF-44AF-83C9-23164474C1E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7543AFCB-F5AF-44AF-83C9-23164474C1E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7543AFCB-F5AF-44AF-83C9-23164474C1E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AF79D55-357E-4E50-9348-783B63705756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AF79D55-357E-4E50-9348-783B63705756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AF79D55-357E-4E50-9348-783B63705756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AF79D55-357E-4E50-9348-783B63705756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +123,7 @@ Global
 		{A247D2EE-14FC-463D-A9BA-6CFF1EF22B7A} = {81072954-DC3E-4804-954C-22D2B096A42C}
 		{E16F908B-C338-4B0C-9E72-2ADAD8FB98D5} = {81072954-DC3E-4804-954C-22D2B096A42C}
 		{7543AFCB-F5AF-44AF-83C9-23164474C1E9} = {BE05BFEA-0A90-4670-82DD-AD7810523501}
+		{3AF79D55-357E-4E50-9348-783B63705756} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA41AE0D-234E-4311-AC9F-AE8F280F56C5}

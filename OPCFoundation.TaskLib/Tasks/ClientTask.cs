@@ -50,9 +50,9 @@ namespace TasksLib.Tasks
         }
 
         internal void SubProcedure(UaClient Prg, int msec)
-        {   
-            Prg.m_context.InsertReadingsData();
+        {
             Thread.Sleep(msec);
+            Prg.m_context.InsertReadingsData();            
         }
     }
 }
