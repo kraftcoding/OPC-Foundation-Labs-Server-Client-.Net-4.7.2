@@ -180,6 +180,7 @@ namespace DB.ModelLib.Managers
                
                 if (db_data == null)
                 {
+                    RData.processStartDate = DateTime.Now;
                     db.ReadingsData.Add(RData);
                 }
                 else

@@ -43,6 +43,7 @@ namespace OPCFoundation.ServerLib.Jobs
 
             #endregion
 
+            tokenSrc = new CancellationTokenSource();
             ProcessModelContext context = new ProcessModelContext();
             UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile));
 
@@ -56,8 +57,8 @@ namespace OPCFoundation.ServerLib.Jobs
                 foreach (var nodeId in nodeIds)
                     Client.CreateSubscription(nodeId, "NODE #" + nodeId + "#", subsDictionary, MonitoringMode.Reporting);
                 
-                ClientTask TplTsk = new ClientTask();
-                TplTsk.Launch(Client, 1000, "CLIENT (" + appName + ")", tokenSrc);
+                ClientTask ClientTsk = new ClientTask();
+                ClientTsk.Launch(Client, 1000, "CLIENT (" + appName + ")", tokenSrc);
             }
             catch (Exception exception)
             {

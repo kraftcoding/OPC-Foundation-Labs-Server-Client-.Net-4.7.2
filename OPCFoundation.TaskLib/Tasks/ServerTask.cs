@@ -16,8 +16,7 @@ namespace TasksLib.Tasks
             {
                 Utils.Trace("Starting long-running task...");
                 await LongRunningTaskAsync(token, app, msec);
-                
-                // Check if cancellation is requested
+                                
                 token.ThrowIfCancellationRequested();
             }
             catch (OperationCanceledException)
@@ -49,7 +48,6 @@ namespace TasksLib.Tasks
 
         internal static void SubProcedure(ApplicationInstance app, int msec)
         {
-
             //... here goes the logic of the sub-procedure
             Utils.Trace("Status: running");
             Thread.Sleep(msec); 
