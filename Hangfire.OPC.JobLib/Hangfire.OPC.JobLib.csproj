@@ -81,23 +81,23 @@
     </ProjectReference>
     <ProjectReference Include="..\DB.ModelLib\DB.ModelLib.csproj">
       <Project>{4327994d-740d-405f-aee5-e4c8c5b4ad95}</Project>
-      <Name>DBModelLib</Name>
+      <Name>DB.ModelLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model.GenericUAServer\Model.GenericUAServer.csproj">
       <Project>{57455bc6-1855-437a-bb00-bff85d3ac354}</Project>
-      <Name>GenericUAServerModel</Name>
+      <Name>Model.GenericUAServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\OPCFoundation.ClientLib\OPCFoundation.ClientLib.csproj">
       <Project>{f15a60fe-c55c-4c19-8454-56e84e095060}</Project>
-      <Name>OPCFoundationClientLib</Name>
+      <Name>OPCFoundation.ClientLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\OPCFoundation.ServerLib\OPCFoundation.ServerLib.csproj">
       <Project>{a8b03e62-57b3-422b-91f0-e0b2a4065ec5}</Project>
-      <Name>OPCFoundationServerLib</Name>
+      <Name>OPCFoundation.ServerLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\OPCFoundation.TaskLib\OPCFoundation.TaskLib.csproj">
       <Project>{5fc8ce05-fbf5-49f3-823c-157dd529fdb5}</Project>
-      <Name>TaskLib</Name>
+      <Name>OPCFoundation.TaskLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
