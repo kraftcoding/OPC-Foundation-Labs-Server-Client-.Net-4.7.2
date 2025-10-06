@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationConfiguration
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd"
+  xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd"
+>
+	<ApplicationName>Temperature Server</ApplicationName>
+	<ApplicationUri>urn:localhost:UASDK:LocalServer</ApplicationUri>
+	<ProductUri>http://opcfoundation.org/LocalServer</ProductUri>
+	<ApplicationType>Server_0</ApplicationType>
+
+	<SecurityConfiguration>
+
+		<!-- Where the application instance certificate is stored (MachineDefault) -->
+		<ApplicationCertificate>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\MachineDefault</StorePath>
+			<SubjectName>SimpleServer AlarmCondition Server</SubjectName>
+		</ApplicationCertificate>
+
+		<!-- Where the trust list is stored (UA Applications) -->
+		<TrustedPeerCertificates>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Applications</StorePath>
+		</TrustedPeerCertificates>
+
+		<!-- Where the issuer certificate are stored (certificate authorities) -->
+		<TrustedIssuerCertificates>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\UA Certificate Authorities</StorePath>
+		</TrustedIssuerCertificates>
+
+		<!-- The directory used to store invalid certficates for later review by the administrator. -->
+		<RejectedCertificateStore>
+			<StoreType>Directory</StoreType>
+			<StorePath>%CommonApplicationData%\OPC Foundation\CertificateStores\RejectedCertificates</StorePath>
+		</RejectedCertificateStore>
+	</SecurityConfiguration>
+
+	<TransportConfigurations></TransportConfigurations>
+	<TransportQuotas>
+		<OperationTimeout>600000</OperationTimeout>
+		<MaxStringLength>1048576</MaxStringLength>
+		<MaxByteStringLength>1048576</MaxByteStringLength>
+		<MaxArrayLength>65535</MaxArrayLength>
+		<MaxMessageSize>4194304</MaxMessageSize>
+		<MaxBufferSize>65535</MaxBufferSize>
+		<ChannelLifetime>300000</ChannelLifetime>
+		<SecurityTokenLifetime>3600000</SecurityTokenLifetime>
+	</TransportQuotas>
+	<ServerConfiguration>
+		<BaseAddresses>
+			<ua:String>http://localhost:62543/LocalServer</ua:String>
+			<ua:String>opc.tcp://localhost:62544/LocalServer</ua:String>
+		</BaseAddresses>
+		<SecurityPolicies>
+			<ServerSecurityPolicy>
+				<SecurityMode>SignAndEncrypt_3</SecurityMode>
+				<SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15</SecurityPolicyUri>
+				<SecurityLevel>3</SecurityLevel>
+			</ServerSecurityPolicy>
+			<ServerSecurityPolicy>
+				<SecurityMode>Sign_2</SecurityMode>
+				<SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic256</SecurityPolicyUri>
+				<SecurityLevel>2</SecurityLevel>
+			</ServerSecurityPolicy>
+			<ServerSecurityPolicy>
+				<SecurityMode>None_1</SecurityMode>
+				<SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#None</SecurityPolicyUri>
+				<SecurityLevel>0</SecurityLevel>
+			</ServerSecurityPolicy>
+			<!--
+      <ServerSecurityPolicy>
+        <SecurityMode>Sign_2</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15</SecurityPolicyUri>
+        <SecurityLevel>1</SecurityLevel>
+      </ServerSecurityPolicy>
+      <ServerSecurityPolicy>
+        <SecurityMode>SignAndEncrypt_3</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic256</SecurityPolicyUri>
+        <SecurityLevel>4</SecurityLevel>
+      </ServerSecurityPolicy>
+      -->
+		</SecurityPolicies>
+		<UserTokenPolicies>
+			<ua:UserTokenPolicy>
+				<ua:TokenType>Anonymous_0</ua:TokenType>
+			</ua:UserTokenPolicy>
+			<!--
+      <ua:UserTokenPolicy>
+        <ua:TokenType>UserName_1</ua:TokenType>
+      </ua:UserTokenPolicy>
+      <ua:UserTokenPolicy>
+        <ua:TokenType>Certificate_2</ua:TokenType>
+      </ua:UserTokenPolicy>
+      <ua:UserTokenPolicy>
+        <ua:TokenType>IssuedToken_3</ua:TokenType>
+        <ua:IssuedTokenType>urn:oasis:names:tc:SAML:1.0:assertion:Assertion</ua:IssuedTokenType>
+      </ua:UserTokenPolicy>
+      -->
+		</UserTokenPolicies>
+		<DiagnosticsEnabled>false</DiagnosticsEnabled>
+		<MaxSessionCount>100</MaxSessionCount>
+		<MinSessionTimeout>10000</MinSessionTimeout>
+		<MaxSessionTimeout>3600000</MaxSessionTimeout>
+		<MaxBrowseContinuationPoints>10</MaxBrowseContinuationPoints>
+		<MaxQueryContinuationPoints>10</MaxQueryContinuationPoints>
+		<MaxHistoryContinuationPoints>100</MaxHistoryContinuationPoints>
+		<MaxRequestAge>600000</MaxRequestAge>
+		<MinPublishingInterval>100</MinPublishingInterval>
+		<MaxPublishingInterval>3600000</MaxPublishingInterval>
+		<PublishingResolution>50</PublishingResolution>
+		<MaxSubscriptionLifetime>3600000</MaxSubscriptionLifetime>
+		<MaxMessageQueueSize>10</MaxMessageQueueSize>
+		<MaxNotificationQueueSize>100</MaxNotificationQueueSize>
+		<MaxNotificationsPerPublish>1000</MaxNotificationsPerPublish>
+		<MinMetadataSamplingInterval>1000</MinMetadataSamplingInterval>
+		<AvailableSamplingRates />
+		<MaxRegistrationInterval>30000</MaxRegistrationInterval>
+		<NodeManagerSaveFile>Opc.Ua.Server.nodes.xml</NodeManagerSaveFile>
+		<MaxSubscriptionCount>50</MaxSubscriptionCount>
+	</ServerConfiguration>
+
+	<Extensions>
+		<ua:XmlElement>
+			<ServerConfigManager xmlns="http://opcfoundation.org/LocalServer">
+				<ServerNodes>
+					<ServerNode>
+						<FolderName>Folder 1</FolderName>
+						<Bool>BoolFieldName1</Bool>
+						<String>StringFieldName1</String>
+						<Byte>ByteFieldName1</Byte>
+						<!--<ByteString>ByteStringFieldName1</ByteString>-->
+						<DateTime>DateTimeFieldName1</DateTime>
+						<Double>DoubleFieldName1</Double>
+					</ServerNode>
+					<ServerNode>
+						<FolderName>Folder 2</FolderName>
+						<Bool>BoolFieldName2</Bool>
+						<String>StringFieldName2</String>
+						<Byte>ByteFieldName2</Byte>
+						<!--<ByteString>ByteStringFieldName2</ByteString>-->
+						<DateTime>DateTimeFieldName2</DateTime>
+						<Double>DoubleFieldName2</Double>
+					</ServerNode>
+					<ServerNode>
+						<FolderName>Folder 3</FolderName>
+						<Bool>BoolFieldName3</Bool>
+						<String>StringFieldName3</String>
+						<Byte>ByteFieldName3</Byte>
+						<!--<ByteString>ByteStringFieldName3</ByteString>-->
+						<DateTime>DateTimeFieldName3</DateTime>
+						<Double>DoubleFieldName3</Double>
+					</ServerNode>
+					<ServerNode>
+						<FolderName>Folder 4</FolderName>
+						<Bool>BoolFieldName4</Bool>
+						<String>StringFieldName4</String>
+						<Byte>ByteFieldName4</Byte>
+						<!--<ByteString>ByteStringFieldName4</ByteString>-->
+						<DateTime>DateTimeFieldName4</DateTime>
+						<Double>DoubleFieldName4</Double>
+					</ServerNode>
+					<ServerNode>
+						<FolderName>Folder 5</FolderName>
+						<Bool>BoolFieldName5</Bool>
+						<String>StringFieldName5</String>
+						<Byte>ByteFieldName5</Byte>
+						<!--<ByteString>ByteStringFieldName5</ByteString>-->
+						<DateTime>DateTimeFieldName5</DateTime>
+						<Double>DoubleFieldName5</Double>
+					</ServerNode>
+					<ServerNode>
+						<FolderName>Folder 6</FolderName>
+						<Bool>BoolFieldName6</Bool>
+						<String>StringFieldName6</String>
+						<Byte>ByteFieldName6</Byte>
+						<!--<ByteString>ByteStringFieldName6</ByteString>-->
+						<DateTime>DateTimeFieldName6</DateTime>
+						<Double>DoubleFieldName6</Double>
+					</ServerNode>
+				</ServerNodes>
+			</ServerConfigManager>
+		</ua:XmlElement>
+	</Extensions>
+
+	<TraceConfiguration>
+		<OutputFilePath>Logs\Hangfire.ServerJob.log.txt</OutputFilePath>
+		<DeleteOnLoad>true</DeleteOnLoad>
+		<!-- Show Only Errors -->
+		<!-- <TraceMasks>1</TraceMasks> -->
+		<!-- Show Only Security and Errors -->
+		<!-- <TraceMasks>513</TraceMasks> -->
+		<!-- Show Only Security, Errors and Trace -->
+		<TraceMasks>515</TraceMasks>
+		<!-- Show Only Security, COM Calls, Errors and Trace -->
+		<!-- <TraceMasks>771</TraceMasks> -->
+		<!-- Show Only Security, Service Calls, Errors and Trace -->
+		<!-- <TraceMasks>523</TraceMasks> -->
+		<!-- Show Only Security, ServiceResultExceptions, Errors and Trace -->
+		<!-- <TraceMasks>519</TraceMasks> -->
+	</TraceConfiguration>
+
+</ApplicationConfiguration>
