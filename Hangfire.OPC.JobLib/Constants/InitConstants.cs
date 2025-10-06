@@ -1,4 +1,4 @@
-﻿namespace OPCFoundation.ServerLibLib.Constants
+﻿namespace OPCFoundation.ServerLib.Constants
 {
     public static class InitConstants
     {

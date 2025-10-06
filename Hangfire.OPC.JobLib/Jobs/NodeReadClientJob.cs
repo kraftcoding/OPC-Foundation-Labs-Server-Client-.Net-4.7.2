@@ -1,12 +1,12 @@
 ﻿using DB.ModelLib.Managers;
-using OPCFoundation.ServerLibLib.Init;
+using OPCFoundation.ServerLib.Init;
 using Opc.Ua;
 using OPCFoundation.ClientLib.Client;
 using OPCFoundation.ClientLib.Helpers;
 using System;
 using System.Collections.Generic;
 
-namespace OPCFoundation.ServerLibLib.Jobs
+namespace OPCFoundation.ServerLib.Jobs
 {
     public static class NodeReadClientJob
     {

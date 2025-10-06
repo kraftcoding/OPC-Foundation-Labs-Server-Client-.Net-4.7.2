@@ -1,12 +1,12 @@
 ﻿using DB.ModelLib.Managers;
-using OPCFoundation.ServerLibLib.Init;
+using OPCFoundation.ServerLib.Init;
 using Opc.Ua;
 using OPCFoundation.ClientLib.Client;
 using OPCFoundation.ClientLib.Helpers;
 using System;
 using System.Collections.Generic;
 
-namespace OPCFoundation.ServerLibLib.Jobs
+namespace OPCFoundation.ServerLib.Jobs
 {
     public static class NodeWriteClientJob
     {
@@ -43,13 +43,13 @@ namespace OPCFoundation.ServerLibLib.Jobs
             {
                 // Stablish comunication with server
                 Client.ConnectEndPoint(p_useSecurity);
-                Helpers.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());                
+                Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());                
                 string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);                
                 Launch(Client, nodeIds); 
             }
             catch (Exception exception)
             {
-                Helpers.Trace("Error: " + exception.ToString());
+                Utils.Trace("Error: " + exception.ToString());
             }
             finally
             {

@@ -1,7 +1,7 @@
 ﻿using Opc.Ua;
 using System;
 
-namespace TaskLib.Base
+namespace OPCFoundation.TaskLib.Base
 {
     public class TaskBase
     {

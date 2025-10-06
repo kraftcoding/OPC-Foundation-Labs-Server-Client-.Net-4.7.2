@@ -1,4 +1,4 @@
-﻿using OPCFoundation.ServerLibLib.Init;
+﻿using OPCFoundation.ServerLib.Init;
 using Opc.Ua;
 using Opc.Ua.Configuration;
 using OPCFoundation.ServerLib.Server;
@@ -6,7 +6,7 @@ using System;
 using TasksLib.Tasks;
 
 
-namespace OPCFoundation.ServerLibLib.Jobs
+namespace OPCFoundation.ServerLib.Jobs
 {
     public static class ServerJob
     {   

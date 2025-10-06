@@ -4,7 +4,7 @@ using OPCFoundation.ClientLib.Helpers;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TaskLib.Base;
+using OPCFoundation.TaskLib.Base;
 
 namespace TasksLib.Tasks
 {

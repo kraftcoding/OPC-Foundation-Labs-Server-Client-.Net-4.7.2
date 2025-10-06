@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaskLib.Helpers
+namespace OPCFoundation.TaskLib.Helpers
 {
     internal static class ProcessHelper
     {

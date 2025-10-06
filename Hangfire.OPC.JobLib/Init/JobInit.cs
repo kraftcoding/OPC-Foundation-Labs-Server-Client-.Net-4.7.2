@@ -1,7 +1,7 @@
-﻿using OPCFoundation.ServerLibLib.Constants;
+﻿using OPCFoundation.ServerLib.Constants;
 using System.IO;
 
-namespace OPCFoundation.ServerLibLib.Init
+namespace OPCFoundation.ServerLib.Init
 {
     public static class JobInit
     {
