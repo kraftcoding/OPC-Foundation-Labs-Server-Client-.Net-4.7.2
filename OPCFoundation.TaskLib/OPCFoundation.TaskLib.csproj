@@ -32,6 +32,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.NetFwTypeLib">
+      <HintPath>..\opc-bin\Interop.NetFwTypeLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Opc.Ua.Client">
+      <HintPath>..\opc-ua\Opc.Ua.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.ClientControls">
+      <HintPath>..\opc-ua\Opc.Ua.ClientControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Configuration">
+      <HintPath>..\opc-ua\Opc.Ua.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Core">
+      <HintPath>..\opc-ua\Opc.Ua.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Server">
+      <HintPath>..\opc-ua\Opc.Ua.Server.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,29 +70,13 @@
     <Compile Include="Tasks\WriteNodesTask.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\SDK\Client\UA Client Library.csproj">
-      <Project>{42e9198c-ed2c-4bc8-b0a1-55d91d8f1e90}</Project>
-      <Name>UA Client Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\SDK\Configuration\UA Configuration Library.csproj">
-      <Project>{8ab4cb8e-e216-425d-b600-350d0b6b59cd}</Project>
-      <Name>UA Configuration Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\SDK\Controls\UA Client Controls.csproj">
-      <Project>{a247d2ee-14fc-463d-a9ba-6cff1ef22b7a}</Project>
-      <Name>UA Client Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\SDK\Server\UA Server Library.csproj">
-      <Project>{e16f908b-c338-4b0c-9e72-2adad8fb98d5}</Project>
-      <Name>UA Server Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\OPC-Foundation-Labs-.Net-4.8\Stack\Core\UA Core Library.csproj">
-      <Project>{7543afcb-f5af-44af-83c9-23164474c1e9}</Project>
-      <Name>UA Core Library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DB.ModelLib\DB.ModelLib.csproj">
       <Project>{4327994d-740d-405f-aee5-e4c8c5b4ad95}</Project>
       <Name>DB.ModelLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model.GenericUAServer\Model.GenericUAServer.csproj">
+      <Project>{31c3c212-715a-4291-864e-78bd4311c7a6}</Project>
+      <Name>Model.GenericUAServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\OPCFoundation.ClientLib\OPCFoundation.ClientLib.csproj">
       <Project>{f15a60fe-c55c-4c19-8454-56e84e095060}</Project>

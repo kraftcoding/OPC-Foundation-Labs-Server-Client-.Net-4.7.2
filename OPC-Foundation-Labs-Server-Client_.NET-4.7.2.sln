@@ -1,0 +1,102 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCFoundation.ServerLib", "OPCFoundation.ServerLib\OPCFoundation.ServerLib.csproj", "{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCFoundation.ClientLib", "OPCFoundation.ClientLib\OPCFoundation.ClientLib.csproj", "{F15A60FE-C55C-4C19-8454-56E84E095060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.ModelLib", "DB.ModelLib\DB.ModelLib.csproj", "{4327994D-740D-405F-AEE5-E4C8C5B4AD95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{1C875AF9-3B8E-43B6-923F-5349FDD20721}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SQL.GenericUAServer", "SQL.GenericUAServer\SQL.GenericUAServer.sqlproj", "{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.GenericUAServer", "Model.GenericUAServer\Model.GenericUAServer.csproj", "{31C3C212-715A-4291-864E-78BD4311C7A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.OPC.JobLib", "Hangfire.OPC.JobLib\Hangfire.OPC.JobLib.csproj", "{4F4288A3-B7D0-40AE-B6A4-09A1D4D936DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCFoundation.TaskLib", "OPCFoundation.TaskLib\OPCFoundation.TaskLib.csproj", "{5FC8CE05-FBF5-49F3-823C-157DD529FDB5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "opc-extern-bin", "opc-extern-bin", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "opc-ua", "opc-ua", "{7348AB0A-C176-4F9E-B382-CA8185B0506D}"
+	ProjectSection(SolutionItems) = preProject
+		opc-ua\Interop.NetFwTypeLib.dll = opc-ua\Interop.NetFwTypeLib.dll
+		opc-ua\Opc.Ua.Client.dll = opc-ua\Opc.Ua.Client.dll
+		opc-ua\Opc.Ua.Client.pdb = opc-ua\Opc.Ua.Client.pdb
+		opc-ua\Opc.Ua.ClientControls.dll = opc-ua\Opc.Ua.ClientControls.dll
+		opc-ua\Opc.Ua.ClientControls.pdb = opc-ua\Opc.Ua.ClientControls.pdb
+		opc-ua\Opc.Ua.Configuration.dll = opc-ua\Opc.Ua.Configuration.dll
+		opc-ua\Opc.Ua.Configuration.pdb = opc-ua\Opc.Ua.Configuration.pdb
+		opc-ua\Opc.Ua.Core.dll = opc-ua\Opc.Ua.Core.dll
+		opc-ua\Opc.Ua.Core.pdb = opc-ua\Opc.Ua.Core.pdb
+		opc-ua\Opc.Ua.Server.dll = opc-ua\Opc.Ua.Server.dll
+		opc-ua\Opc.Ua.Server.pdb = opc-ua\Opc.Ua.Server.pdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "extern", "extern", "{BE09FEE4-8891-458F-8E3C-2CFE745AEE19}"
+	ProjectSection(SolutionItems) = preProject
+		extern-bin\Interop.ActiveDs.dll = extern-bin\Interop.ActiveDs.dll
+		extern-bin\Interop.NetFwTypeLib.dll = extern-bin\Interop.NetFwTypeLib.dll
+		extern-bin\Opc.Ua.ComInterop.dll = extern-bin\Opc.Ua.ComInterop.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15A60FE-C55C-4C19-8454-56E84E095060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15A60FE-C55C-4C19-8454-56E84E095060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15A60FE-C55C-4C19-8454-56E84E095060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15A60FE-C55C-4C19-8454-56E84E095060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{31C3C212-715A-4291-864E-78BD4311C7A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C3C212-715A-4291-864E-78BD4311C7A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C3C212-715A-4291-864E-78BD4311C7A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C3C212-715A-4291-864E-78BD4311C7A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F4288A3-B7D0-40AE-B6A4-09A1D4D936DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F4288A3-B7D0-40AE-B6A4-09A1D4D936DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F4288A3-B7D0-40AE-B6A4-09A1D4D936DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F4288A3-B7D0-40AE-B6A4-09A1D4D936DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8B03E62-57B3-422B-91F0-E0B2A4065EC5} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
+		{F15A60FE-C55C-4C19-8454-56E84E095060} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
+		{4327994D-740D-405F-AEE5-E4C8C5B4AD95} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
+		{22F9B20D-DE25-4B8E-BAC8-412096BFEB9E} = {1C875AF9-3B8E-43B6-923F-5349FDD20721}
+		{31C3C212-715A-4291-864E-78BD4311C7A6} = {1C875AF9-3B8E-43B6-923F-5349FDD20721}
+		{4F4288A3-B7D0-40AE-B6A4-09A1D4D936DF} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
+		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
+		{7348AB0A-C176-4F9E-B382-CA8185B0506D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{BE09FEE4-8891-458F-8E3C-2CFE745AEE19} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA41AE0D-234E-4311-AC9F-AE8F280F56C5}
+	EndGlobalSection
+EndGlobal
