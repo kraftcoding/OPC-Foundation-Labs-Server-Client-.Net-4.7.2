@@ -15,34 +15,32 @@ namespace OPCFoundation.ServerLib.Jobs
         /// <summary>
         /// The main entry point for the application.
         /// </summary>        
-        public static void Init(string configFile)
-        {
+        public static void Init(string configFile, string filesPath)
+        {    
 
-             
+            #region Global variables
 
-        #region Global variables
+                //Params
+                bool p_useSecurity = false;
+                int p_baseAddressId = 0; //default 0
+                string ns = "ns=2;s="; //default ns=2;s=
+                string appName = "Client Test App 1";
+                string appConfig = "ClientTestAppConfig";
 
-            //Params
-            bool p_useSecurity = false;
-            int p_baseAddressId = 0; //default 0
-            string ns = "ns=2;s="; //default ns=2;s=
-            string appName = "Client Test App 1";
-            string appConfig = "ClientTestAppConfig";
+                //Test subscription
+                Dictionary<string, string> subsDictionary = new Dictionary<string, string>();
+                subsDictionary.Add("DisplayName", "Alarm");
+                subsDictionary.Add("PublishingInterval", "1000");
+                subsDictionary.Add("KeepAliveCount", "10");
+                subsDictionary.Add("LifetimeCount", "100");
+                subsDictionary.Add("MaxNotificationsPerPublish", "1000");
+                subsDictionary.Add("PublishingEnabled", "true");
 
-            //Test subscription
-            Dictionary<string, string> subsDictionary = new Dictionary<string, string>();
-            subsDictionary.Add("DisplayName", "Alarm");
-            subsDictionary.Add("PublishingInterval", "1000");
-            subsDictionary.Add("KeepAliveCount", "10");
-            subsDictionary.Add("LifetimeCount", "100");
-            subsDictionary.Add("MaxNotificationsPerPublish", "1000");
-            subsDictionary.Add("PublishingEnabled", "true");
-
-            #endregion
+                #endregion
 
             // create program controller
             ProcessModelContext context = new ProcessModelContext();
-            UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile));
+            UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile, filesPath));
 
             try
             {

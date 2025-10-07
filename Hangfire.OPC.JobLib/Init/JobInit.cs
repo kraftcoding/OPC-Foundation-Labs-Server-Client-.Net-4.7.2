@@ -5,15 +5,15 @@ namespace OPCFoundation.ServerLib.Init
 {
     public static class JobInit
     {
-        internal static string GetConfigFilePath(string configFile)
+        internal static string GetConfigFilePath(string configFile, string filesPath)
         {
-            if (string.IsNullOrEmpty(configFile))
+            if (string.IsNullOrEmpty(configFile) && string.IsNullOrEmpty(filesPath))
             {
                 return null;
             }
             else
             {
-                return Path.GetFullPath(InitConstants.PATH_CONFIG_FILES + configFile);
+                return Path.GetFullPath(filesPath + configFile);
             }
         }
     }

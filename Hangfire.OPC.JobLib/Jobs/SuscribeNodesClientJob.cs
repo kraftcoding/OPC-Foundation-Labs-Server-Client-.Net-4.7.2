@@ -21,7 +21,7 @@ namespace OPCFoundation.ServerLib.Jobs
         /// <summary>
         /// The main entry point for the application.
         /// </summary>  
-        public static void Init(string configFile)
+        public static void Init(string configFile, string filesPath)
         {
             #region Global variables
 
@@ -45,7 +45,7 @@ namespace OPCFoundation.ServerLib.Jobs
 
             tokenSrc = new CancellationTokenSource();
             ProcessModelContext context = new ProcessModelContext();
-            UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile));
+            UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile, filesPath));
 
             try
             {

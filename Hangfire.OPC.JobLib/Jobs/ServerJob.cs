@@ -18,13 +18,13 @@ namespace OPCFoundation.ServerLib.Jobs
         /// <summary>
         /// The main entry point for the application.
         /// </summary>        
-        public static void Init(string configFile)
+        public static void Init(string configFile, string filesPath)
         {            
             tokenSrc = new CancellationTokenSource();
             application = new ApplicationInstance();
             application.ApplicationType = ApplicationType.Server;
             application.ConfigSectionName = JobName;
-            application.CustomConfigFile = JobInit.GetConfigFilePath(configFile);
+            application.CustomConfigFile = JobInit.GetConfigFilePath(configFile, filesPath);
 
             try
             {
