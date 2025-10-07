@@ -75,10 +75,6 @@
       <Project>{4327994d-740d-405f-aee5-e4c8c5b4ad95}</Project>
       <Name>DB.ModelLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model.GenericUAServer\Model.GenericUAServer.csproj">
-      <Project>{3af79d55-357e-4e50-9348-783b63705756}</Project>
-      <Name>Model.GenericUAServer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OPCFoundation.ClientLib\OPCFoundation.ClientLib.csproj">
       <Project>{f15a60fe-c55c-4c19-8454-56e84e095060}</Project>
       <Name>OPCFoundation.ClientLib</Name>

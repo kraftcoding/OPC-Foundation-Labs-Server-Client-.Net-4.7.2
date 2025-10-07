@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TasksLib.Tasks
+namespace OPCFoundation.TaskLib.Tasks
 {
     public static class ServerTask
     {

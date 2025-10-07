@@ -62,10 +62,6 @@
       <Project>{7543afcb-f5af-44af-83c9-23164474c1e9}</Project>
       <Name>UA Core Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model.GenericUAServer\Model.GenericUAServer.csproj">
-      <Project>{3af79d55-357e-4e50-9348-783b63705756}</Project>
-      <Name>Model.GenericUAServer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

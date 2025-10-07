@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using OPCFoundation.TaskLib.Base;
 
-namespace TasksLib.Tasks
+namespace OPCFoundation.TaskLib.Tasks
 {
     public class ReadNodesTask : TaskBase
     {

@@ -1,8 +1,10 @@
-﻿using Model.GenericUAServer;
+﻿//using Model.GenericUAServer;
 using Opc.Ua;
 using System;
 using System.Data.Entity.Migrations;
 using System.Linq;
+
+using Model.GenericUAServer;
 
 namespace DB.ModelLib.Managers
 {
@@ -175,13 +177,13 @@ namespace DB.ModelLib.Managers
         {
             if (m_db_upddate)
             {
-                using (var db = new GenericUAServer())
+                using (var db = new GenericUAServerEntities())
                 {
                     try
                     {
-                        IQueryable<ReadingsData> iQReadingsData = db.ReadingsData.Where(r => r.idProcess == RData.idProcess);
+                        ReadingsData db_data = db.ReadingsData.Where(r => r.idProcess == RData.idProcess).FirstOrDefault();
 
-                        if (iQReadingsData == null)
+                        if (db_data == null)
                         {
                             RData.processStartDate = DateTime.Now;
                             db.ReadingsData.Add(RData);
@@ -198,8 +200,8 @@ namespace DB.ModelLib.Managers
                         Utils.Trace("Error: failed to complete database operations. " + ex.ToString());
                     }
                 }
-            }            
-        }
+            }
+        }              
 
         //public async Task<IEnumerable<ReadingsData>> GetReadingsData()
         //{

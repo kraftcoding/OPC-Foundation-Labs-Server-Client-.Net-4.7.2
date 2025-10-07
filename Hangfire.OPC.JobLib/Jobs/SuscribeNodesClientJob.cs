@@ -8,7 +8,7 @@ using OPCFoundation.TaskLib.Base;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using TasksLib.Tasks;
+using OPCFoundation.TaskLib.Tasks;
 
 namespace OPCFoundation.ServerLib.Jobs
 {
@@ -75,6 +75,7 @@ namespace OPCFoundation.ServerLib.Jobs
         {
             try
             {
+                tokenSrc.Cancel();
                 application.Stop();
             }
             catch (Exception e)

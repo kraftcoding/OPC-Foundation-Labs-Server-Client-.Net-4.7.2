@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.GenericUAServer.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GenericUAServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ReadingsData">
           <Key>
             <PropertyRef Name="id" />
@@ -49,16 +49,14 @@
           <Property Name="idProcess" Type="nvarchar" MaxLength="50" />
           <Property Name="processStartDate" Type="datetime" />
         </EntityType>
-        <EntityContainer Name="ModelGenericUAServerStoreContainer">
+        <EntityContainer Name="GenericUAServerModelStoreContainer">
           <EntitySet Name="ReadingsData" EntityType="Self.ReadingsData" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model.GenericUAServer" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="GenericUAServerConnString" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="ReadingsData" EntityType="Model.GenericUAServer.ReadingsData" />
-        </EntityContainer>
+      <Schema Namespace="GenericUAServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ReadingsData">
           <Key>
             <PropertyRef Name="id" />
@@ -103,54 +101,57 @@
           <Property Name="idProcess" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="processStartDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityContainer Name="GenericUAServerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ReadingsData" EntityType="Self.ReadingsData" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelGenericUAServerStoreContainer" CdmEntityContainer="GenericUAServerConnString" >
+        <EntityContainerMapping StorageEntityContainer="GenericUAServerModelStoreContainer" CdmEntityContainer="GenericUAServerEntities">
           <EntitySetMapping Name="ReadingsData">
-            <EntityTypeMapping TypeName="Model.GenericUAServer.ReadingsData">
+            <EntityTypeMapping TypeName="GenericUAServerModel.ReadingsData">
               <MappingFragment StoreEntitySet="ReadingsData">
-                <ScalarProperty Name="processStartDate" ColumnName="processStartDate" />
-                <ScalarProperty Name="idProcess" ColumnName="idProcess" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="DoubleFieldName1" ColumnName="DoubleFieldName1" />
-                <ScalarProperty Name="DateTimeFieldName1" ColumnName="DateTimeFieldName1" />
-                <ScalarProperty Name="ByteStringFieldName1" ColumnName="ByteStringFieldName1" />
-                <ScalarProperty Name="ByteFieldName1" ColumnName="ByteFieldName1" />
-                <ScalarProperty Name="StringFieldName1" ColumnName="StringFieldName1" />
-                <ScalarProperty Name="BoolFieldName1" ColumnName="BoolFieldName1" />
-                <ScalarProperty Name="DoubleFieldName2" ColumnName="DoubleFieldName2" />
-                <ScalarProperty Name="DateTimeFieldName2" ColumnName="DateTimeFieldName2" />
-                <ScalarProperty Name="ByteStringFieldName2" ColumnName="ByteStringFieldName2" />
-                <ScalarProperty Name="ByteFieldName2" ColumnName="ByteFieldName2" />
-                <ScalarProperty Name="StringFieldName2" ColumnName="StringFieldName2" />
-                <ScalarProperty Name="BoolFieldName2" ColumnName="BoolFieldName2" />
-                <ScalarProperty Name="DoubleFieldName3" ColumnName="DoubleFieldName3" />
-                <ScalarProperty Name="DateTimeFieldName3" ColumnName="DateTimeFieldName3" />
-                <ScalarProperty Name="ByteStringFieldName3" ColumnName="ByteStringFieldName3" />
-                <ScalarProperty Name="ByteFieldName3" ColumnName="ByteFieldName3" />
-                <ScalarProperty Name="StringFieldName3" ColumnName="StringFieldName3" />
-                <ScalarProperty Name="BoolFieldName3" ColumnName="BoolFieldName3" />
-                <ScalarProperty Name="DoubleFieldName4" ColumnName="DoubleFieldName4" />
-                <ScalarProperty Name="DateTimeFieldName4" ColumnName="DateTimeFieldName4" />
-                <ScalarProperty Name="ByteStringFieldName4" ColumnName="ByteStringFieldName4" />
-                <ScalarProperty Name="ByteFieldName4" ColumnName="ByteFieldName4" />
-                <ScalarProperty Name="StringFieldName4" ColumnName="StringFieldName4" />
-                <ScalarProperty Name="BoolFieldName4" ColumnName="BoolFieldName4" />
-                <ScalarProperty Name="DoubleFieldName5" ColumnName="DoubleFieldName5" />
-                <ScalarProperty Name="DateTimeFieldName5" ColumnName="DateTimeFieldName5" />
-                <ScalarProperty Name="ByteStringFieldName5" ColumnName="ByteStringFieldName5" />
-                <ScalarProperty Name="ByteFieldName5" ColumnName="ByteFieldName5" />
-                <ScalarProperty Name="StringFieldName5" ColumnName="StringFieldName5" />
-                <ScalarProperty Name="BoolFieldName5" ColumnName="BoolFieldName5" />
-                <ScalarProperty Name="DoubleFieldName6" ColumnName="DoubleFieldName6" />
-                <ScalarProperty Name="DateTimeFieldName6" ColumnName="DateTimeFieldName6" />
-                <ScalarProperty Name="ByteStringFieldName6" ColumnName="ByteStringFieldName6" />
-                <ScalarProperty Name="ByteFieldName6" ColumnName="ByteFieldName6" />
-                <ScalarProperty Name="StringFieldName6" ColumnName="StringFieldName6" />
                 <ScalarProperty Name="BoolFieldName6" ColumnName="BoolFieldName6" />
+                <ScalarProperty Name="StringFieldName6" ColumnName="StringFieldName6" />
+                <ScalarProperty Name="ByteFieldName6" ColumnName="ByteFieldName6" />
+                <ScalarProperty Name="ByteStringFieldName6" ColumnName="ByteStringFieldName6" />
+                <ScalarProperty Name="DateTimeFieldName6" ColumnName="DateTimeFieldName6" />
+                <ScalarProperty Name="DoubleFieldName6" ColumnName="DoubleFieldName6" />
+                <ScalarProperty Name="BoolFieldName5" ColumnName="BoolFieldName5" />
+                <ScalarProperty Name="StringFieldName5" ColumnName="StringFieldName5" />
+                <ScalarProperty Name="ByteFieldName5" ColumnName="ByteFieldName5" />
+                <ScalarProperty Name="ByteStringFieldName5" ColumnName="ByteStringFieldName5" />
+                <ScalarProperty Name="DateTimeFieldName5" ColumnName="DateTimeFieldName5" />
+                <ScalarProperty Name="DoubleFieldName5" ColumnName="DoubleFieldName5" />
+                <ScalarProperty Name="BoolFieldName4" ColumnName="BoolFieldName4" />
+                <ScalarProperty Name="StringFieldName4" ColumnName="StringFieldName4" />
+                <ScalarProperty Name="ByteFieldName4" ColumnName="ByteFieldName4" />
+                <ScalarProperty Name="ByteStringFieldName4" ColumnName="ByteStringFieldName4" />
+                <ScalarProperty Name="DateTimeFieldName4" ColumnName="DateTimeFieldName4" />
+                <ScalarProperty Name="DoubleFieldName4" ColumnName="DoubleFieldName4" />
+                <ScalarProperty Name="BoolFieldName3" ColumnName="BoolFieldName3" />
+                <ScalarProperty Name="StringFieldName3" ColumnName="StringFieldName3" />
+                <ScalarProperty Name="ByteFieldName3" ColumnName="ByteFieldName3" />
+                <ScalarProperty Name="ByteStringFieldName3" ColumnName="ByteStringFieldName3" />
+                <ScalarProperty Name="DateTimeFieldName3" ColumnName="DateTimeFieldName3" />
+                <ScalarProperty Name="DoubleFieldName3" ColumnName="DoubleFieldName3" />
+                <ScalarProperty Name="BoolFieldName2" ColumnName="BoolFieldName2" />
+                <ScalarProperty Name="StringFieldName2" ColumnName="StringFieldName2" />
+                <ScalarProperty Name="ByteFieldName2" ColumnName="ByteFieldName2" />
+                <ScalarProperty Name="ByteStringFieldName2" ColumnName="ByteStringFieldName2" />
+                <ScalarProperty Name="DateTimeFieldName2" ColumnName="DateTimeFieldName2" />
+                <ScalarProperty Name="DoubleFieldName2" ColumnName="DoubleFieldName2" />
+                <ScalarProperty Name="BoolFieldName1" ColumnName="BoolFieldName1" />
+                <ScalarProperty Name="StringFieldName1" ColumnName="StringFieldName1" />
+                <ScalarProperty Name="ByteFieldName1" ColumnName="ByteFieldName1" />
+                <ScalarProperty Name="ByteStringFieldName1" ColumnName="ByteStringFieldName1" />
+                <ScalarProperty Name="DateTimeFieldName1" ColumnName="DateTimeFieldName1" />
+                <ScalarProperty Name="DoubleFieldName1" ColumnName="DoubleFieldName1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idProcess" ColumnName="idProcess" />
+                <ScalarProperty Name="processStartDate" ColumnName="processStartDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

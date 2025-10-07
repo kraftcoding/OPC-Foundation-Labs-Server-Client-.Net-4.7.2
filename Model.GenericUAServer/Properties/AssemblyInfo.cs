@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Model.GenericUAServer")]
+[assembly: AssemblyTitle("GenericUAServerModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Model.GenericUAServer")]
+[assembly: AssemblyProduct("GenericUAServerModel")]
 [assembly: AssemblyCopyright("Copyright ©  2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("3af79d55-357e-4e50-9348-783b63705756")]
+[assembly: Guid("57455bc6-1855-437a-bb00-bff85d3ac354")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
