@@ -44,7 +44,7 @@ namespace Hangfire.OPC.JobLib.Jobs
 
                 string taskname = "ServerTask";
                 Utils.Trace("Launching task... {0}", taskname);
-                TextBuffer.WriteLine(string.Format("Launching TASK... {0}", taskname));                
+                TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));                
                 ServerTask.Launch(application, 10000, taskname, tokenSrc);
             }
             catch (OperationCanceledException ex)
@@ -80,8 +80,8 @@ namespace Hangfire.OPC.JobLib.Jobs
             catch (Exception ex)
             {
                 Utils.Trace("Error: " + ex.ToString());
-                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
-                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
+                //TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                //TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }            
         }
     }

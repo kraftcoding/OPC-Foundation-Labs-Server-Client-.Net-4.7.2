@@ -54,8 +54,11 @@ namespace Hangfire.OPC.JobLib.Jobs
 
                 Utils.Trace("Getting node config...");
                 TextBuffer.WriteLine("Getting node config...");
-                string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);                
-                
+                string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);
+
+                string taskname = "WriteNodes";
+                Utils.Trace("Launching task... {0}", taskname);
+                TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));
                 Launch(Client, nodeIds); 
             }
             catch (OperationCanceledException ex)

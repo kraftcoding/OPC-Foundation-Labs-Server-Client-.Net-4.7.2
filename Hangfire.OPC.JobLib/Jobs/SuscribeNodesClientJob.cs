@@ -72,7 +72,7 @@ namespace Hangfire.OPC.JobLib.Jobs
                     Client.CreateSubscription(nodeId, "NODE #" + nodeId + "#", subsDictionary, MonitoringMode.Reporting);
 
                 string taskname = "SuscribeNodesClientTask";
-                Utils.Trace("Launching Task... {0}", taskname);
+                Utils.Trace("Launching task... {0}", taskname);
                 TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));
                 SuscribeNodesClientTask ClientTsk = new SuscribeNodesClientTask();
                 ClientTsk.Launch(Client, 60000, tokenSrc);
@@ -107,7 +107,7 @@ namespace Hangfire.OPC.JobLib.Jobs
                 TextBuffer.WriteLine(string.Format("Stoping... {0}", JobName));
                 tokenSrc.Cancel();
                 tokenSrc.Dispose();
-                application.Stop();
+                //application.Stop();
             }
             catch (Exception ex)
             {
