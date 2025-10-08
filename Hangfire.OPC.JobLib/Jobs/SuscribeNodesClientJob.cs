@@ -57,7 +57,7 @@ namespace OPCFoundation.ServerLib.Jobs
                 foreach (var nodeId in nodeIds)
                     Client.CreateSubscription(nodeId, "NODE #" + nodeId + "#", subsDictionary, MonitoringMode.Reporting);
                 
-                ClientTask ClientTsk = new ClientTask();
+                SuscriberAndDBTask ClientTsk = new SuscriberAndDBTask();
                 ClientTsk.Launch(Client, 60000, "CLIENT (" + appName + ")", tokenSrc);
             }
             catch (Exception exception)

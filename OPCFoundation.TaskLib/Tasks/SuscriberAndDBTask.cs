@@ -7,7 +7,7 @@ using OPCFoundation.TaskLib.Base;
 
 namespace OPCFoundation.TaskLib.Tasks
 {
-    public partial class ClientTask : TaskBase
+    public partial class SuscriberAndDBTask : TaskBase
     {
         public async Task Launch(UaClient Client, int msec, string taskname, CancellationTokenSource cancellationTokenSource)
         {

@@ -65,7 +65,7 @@
     <Compile Include="Helpers\ProcessHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\ReadNodesTask.cs" />
-    <Compile Include="Tasks\ClientTask.cs" />
+    <Compile Include="Tasks\SuscriberAndDBTask.cs" />
     <Compile Include="Tasks\ServerTask.cs" />
     <Compile Include="Tasks\WriteNodesTask.cs" />
   </ItemGroup>
