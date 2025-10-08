@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\JobBase.cs" />
     <Compile Include="Constants\InitConstants.cs" />
     <Compile Include="Init\JobInit.cs" />
     <Compile Include="Interfaces\ITestService.cs" />
@@ -77,13 +78,16 @@
     <Compile Include="Jobs\NodeReadClientJob.cs" />
     <Compile Include="Jobs\SuscribeNodesClientJob.cs" />
     <Compile Include="Jobs\ServerJob.cs" />
-    <Compile Include="Model\JobType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DB.ModelLib\DB.ModelLib.csproj">
       <Project>{4327994d-740d-405f-aee5-e4c8c5b4ad95}</Project>
       <Name>DB.ModelLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hangfire.OPC.Configuration\Hangfire.OPC.Configuration.csproj">
+      <Project>{7390d83e-123a-41b9-8300-8432ba458fff}</Project>
+      <Name>Hangfire.OPC.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model.GenericUAServer\Model.GenericUAServer.csproj">
       <Project>{31c3c212-715a-4291-864e-78bd4311c7a6}</Project>
@@ -111,5 +115,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,48 +1,69 @@
-﻿using Opc.Ua;
+﻿using Hangfire.OPC.Configuration.Logs;
+using Hangfire.OPC.JobLib.Base;
+using Hangfire.OPC.JobLib.Init;
+using Opc.Ua;
 using Opc.Ua.Configuration;
-using OPCFoundation.ServerLib.Init;
 using OPCFoundation.ServerLib.Server;
+using OPCFoundation.TaskLib.Tasks;
 using System;
 using System.Threading;
-using OPCFoundation.TaskLib.Tasks;
 
-
-namespace OPCFoundation.ServerLib.Jobs
-{
-    public static class ServerJob
+namespace Hangfire.OPC.JobLib.Jobs
+{    
+    public class ServerJob : JobBase
     {
-        public static ApplicationInstance application;
         public static string JobName = "OPC UA Generic Server";
-        public static CancellationTokenSource tokenSrc;
+        public static ApplicationInstance application;        
+        public static CancellationTokenSource tokenSrc;        
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>        
         public static void Init(string configFile, string filesPath)
-        {            
-            tokenSrc = new CancellationTokenSource();
-            application = new ApplicationInstance();
-            application.ApplicationType = ApplicationType.Server;
-            application.ConfigSectionName = JobName;
-            application.CustomConfigFile = JobInit.GetConfigFilePath(configFile, filesPath);
+        {
+            Utils.Trace("Initiating job... {0}", JobName);
+            TextBuffer.WriteLine(string.Format("Initiating job... {0}", JobName));
 
             try
             {
-                application.Start(new UaServer(false)); // if true, loads default nodes from code with simulated data               
+                tokenSrc = new CancellationTokenSource();
+                application = new ApplicationInstance();
+                application.ApplicationType = ApplicationType.Server;
+                application.ConfigSectionName = JobName;
+                application.CustomConfigFile = JobInit.GetConfigFilePath(configFile, filesPath);            
+                
+                application.Start(new UaServer(false)); // if true, loads default nodes from code with simulated data
+                
                 Utils.Trace("End points: ");
+                TextBuffer.WriteLine("End points: ");
                 foreach (var ep in application.ApplicationConfiguration.ServerConfiguration.BaseAddresses)
                 {
                     Utils.Trace("   " + ep);
+                    TextBuffer.WriteLine(string.Format("   {0}", ep));
                 }
-                ServerTask.Launch(application, 10000, "SERVER", tokenSrc);
+
+                string taskname = "ServerTask";
+                Utils.Trace("Launching task... {0}", taskname);
+                TextBuffer.WriteLine(string.Format("Launching TASK... {0}", taskname));                
+                ServerTask.Launch(application, 10000, taskname, tokenSrc);
             }
-            catch (Exception e)
+            catch (OperationCanceledException ex)
             {
-                Utils.Trace("Error: " + e.ToString());
+                Utils.Trace("Task was cancelled by user");
+                TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
+            }
+            catch (Exception ex)
+            {
+                Utils.Trace("Error: " + ex.ToString());
+                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
+
+                Stop();
             }
             finally
             {
-                application.Stop();
+                Utils.Trace("Program completed");
+                TextBuffer.WriteLine("Program completed");                
             }
         }
 
@@ -50,24 +71,18 @@ namespace OPCFoundation.ServerLib.Jobs
         {
             try
             {
+                Utils.Trace("Stoping JOB... {0}", JobName);
+                TextBuffer.WriteLine(string.Format("Stoping... {0}", JobName));
                 tokenSrc.Cancel();
+                tokenSrc.Dispose();
                 application.Stop();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Utils.Trace("Error: " + e.ToString());
+                Utils.Trace("Error: " + ex.ToString());
+                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }            
         }
-    }
-
-
-
-    /// <summary>
-    /// The <b>AlarmConditionServer</b> namespace contains classes which implement a UA Alarm Condition Server.
-    /// </summary>
-    /// <exclude/>
-    [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class NamespaceDoc
-    {
     }
 }

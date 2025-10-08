@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.NetFwTypeLib">
-      <HintPath>..\opc-bin\Interop.NetFwTypeLib.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Opc.Ua.Client">
       <HintPath>..\opc-ua\Opc.Ua.Client.dll</HintPath>
     </Reference>
@@ -64,15 +60,19 @@
     <Compile Include="Base\TaskBase.cs" />
     <Compile Include="Helpers\ProcessHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\ReadNodesTask.cs" />
-    <Compile Include="Tasks\SuscriberAndDBTask.cs" />
+    <None Include="Tasks\NodeReadClientTask.cs.bck" />
+    <Compile Include="Tasks\SuscribeNodesClientTask.cs" />
     <Compile Include="Tasks\ServerTask.cs" />
-    <Compile Include="Tasks\WriteNodesTask.cs" />
+    <None Include="Tasks\NodeWriteClientTask.cs.bck" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DB.ModelLib\DB.ModelLib.csproj">
       <Project>{4327994d-740d-405f-aee5-e4c8c5b4ad95}</Project>
       <Name>DB.ModelLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hangfire.OPC.Configuration\Hangfire.OPC.Configuration.csproj">
+      <Project>{7390d83e-123a-41b9-8300-8432ba458fff}</Project>
+      <Name>Hangfire.OPC.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model.GenericUAServer\Model.GenericUAServer.csproj">
       <Project>{31c3c212-715a-4291-864e-78bd4311c7a6}</Project>

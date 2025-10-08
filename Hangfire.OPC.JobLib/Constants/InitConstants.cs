@@ -1,4 +1,4 @@
-﻿namespace OPCFoundation.ServerLib.Constants
+﻿namespace Hangfire.OPC.JobLib.Constants
 {
     public static class InitConstants
     {

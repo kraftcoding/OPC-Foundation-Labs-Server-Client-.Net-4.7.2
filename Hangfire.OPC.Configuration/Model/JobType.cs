@@ -1,4 +1,4 @@
-namespace OPCFoundation.ServerLib.Model
+namespace Hangfire.OPC.Configuration.Model
 {
     public enum JobType
     {

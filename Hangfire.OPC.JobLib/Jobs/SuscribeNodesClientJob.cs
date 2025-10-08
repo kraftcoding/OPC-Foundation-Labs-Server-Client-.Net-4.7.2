@@ -1,29 +1,32 @@
 ﻿using DB.ModelLib.Managers;
+using Hangfire.OPC.Configuration.Logs;
+using Hangfire.OPC.JobLib.Base;
+using Hangfire.OPC.JobLib.Init;
 using Opc.Ua;
 using Opc.Ua.Configuration;
 using OPCFoundation.ClientLib.Client;
 using OPCFoundation.ClientLib.Helpers;
-using OPCFoundation.ServerLib.Init;
-using OPCFoundation.TaskLib.Base;
+using OPCFoundation.TaskLib.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using OPCFoundation.TaskLib.Tasks;
 
-namespace OPCFoundation.ServerLib.Jobs
+namespace Hangfire.OPC.JobLib.Jobs
 {
-    public class SuscribeNodesClientJob : TaskBase
+    public class SuscribeNodesClientJob : JobBase
     {
-        public static ApplicationInstance application;
-        public static string JobName = "OPC UA Suscriber Client";
+        public static string JobName = "OPC UA Subscription Client";
+        public static ApplicationInstance application;        
         public static CancellationTokenSource tokenSrc;
-
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>  
         public static void Init(string configFile, string filesPath)
         {
-            #region Global variables
+            UaClient Client = null;
+
+            #region variables
 
             //Params
             bool p_useSecurity = false;
@@ -43,30 +46,55 @@ namespace OPCFoundation.ServerLib.Jobs
 
             #endregion
 
-            tokenSrc = new CancellationTokenSource();
-            ProcessModelContext context = new ProcessModelContext();
-            UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile, filesPath));
+            Utils.Trace("Initiating job... {0}", JobName);
+            TextBuffer.WriteLine(string.Format("Initiating... {0}", JobName));
 
             try
             {
-                // Stablish comunication with server
-                Client.ConnectEndPoint(p_useSecurity);
-                Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());              
+                tokenSrc = new CancellationTokenSource();
+                ProcessModelContext context = new ProcessModelContext();
+                Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile, filesPath));
                                 
+                Utils.Trace("Stablishin comunication with server...");
+                TextBuffer.WriteLine("Stablishin comunication with server...");
+                Client.ConnectEndPoint(p_useSecurity);
+           
+                Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
+                TextBuffer.WriteLine(string.Format("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString()));
+
+                Utils.Trace("Getting node config...");
+                TextBuffer.WriteLine("Getting node config...");
                 string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);
+                
+                Utils.Trace("Creating subscriptions...");
+                TextBuffer.WriteLine("Creating subscriptions...");
                 foreach (var nodeId in nodeIds)
                     Client.CreateSubscription(nodeId, "NODE #" + nodeId + "#", subsDictionary, MonitoringMode.Reporting);
-                
-                SuscriberAndDBTask ClientTsk = new SuscriberAndDBTask();
-                ClientTsk.Launch(Client, 60000, "CLIENT (" + appName + ")", tokenSrc);
+
+                string taskname = "SuscribeNodesClientTask";
+                Utils.Trace("Launching Task... {0}", taskname);
+                TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));
+                SuscribeNodesClientTask ClientTsk = new SuscribeNodesClientTask();
+                ClientTsk.Launch(Client, 60000, tokenSrc);
             }
-            catch (Exception exception)
+            catch (OperationCanceledException ex)
             {
-                Utils.Trace("Error: " + exception.ToString());
+                Utils.Trace("Task was cancelled by user");
+                TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
+            }
+            catch (Exception ex)
+            {
+                Utils.Trace("Error: " + ex.ToString());
+                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
+
+                Stop();
             }
             finally
             {
-                Client.DisconnectEndPoint();
+                Client?.DisconnectEndPoint();
+                Utils.Trace("Program completed");
+                TextBuffer.WriteLine("Program completed");
             }
 
         }
@@ -75,12 +103,17 @@ namespace OPCFoundation.ServerLib.Jobs
         {
             try
             {
+                Utils.Trace("Stoping JOB... {0}", JobName);
+                TextBuffer.WriteLine(string.Format("Stoping... {0}", JobName));
                 tokenSrc.Cancel();
+                tokenSrc.Dispose();
                 application.Stop();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Utils.Trace("Error: " + e.ToString());
+                Utils.Trace("Error: " + ex.ToString());
+                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }
         }
     }

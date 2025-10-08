@@ -8,11 +8,11 @@ using OPCFoundation.TaskLib.Base;
 
 namespace OPCFoundation.TaskLib.Tasks
 {
-    public class WriteNodesTask : TaskBase
+    public class NodeWriteClientTask : TaskBase
     {
         public async Task Launch(UaClient Client, string[] nodeIds, int msec, string taskname)
         {
-            Client.m_context.RData.idProcess = this.ProcessId.ToString();
+            Client.m_context.RData.idProcess = this.TaskId.ToString();
 
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;

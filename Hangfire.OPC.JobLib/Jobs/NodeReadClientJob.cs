@@ -1,14 +1,16 @@
 ﻿using DB.ModelLib.Managers;
-using OPCFoundation.ServerLib.Init;
+using Hangfire.OPC.Configuration.Logs;
+using Hangfire.OPC.JobLib.Base;
+using Hangfire.OPC.JobLib.Init;
 using Opc.Ua;
 using OPCFoundation.ClientLib.Client;
 using OPCFoundation.ClientLib.Helpers;
 using System;
 using System.Collections.Generic;
 
-namespace OPCFoundation.ServerLib.Jobs
+namespace Hangfire.OPC.JobLib.Jobs
 {
-    public static class NodeReadClientJob
+    public class NodeReadClientJob : JobBase
     {
         public static string JobName = "OPC UA Node Read Client";
 
@@ -37,21 +39,37 @@ namespace OPCFoundation.ServerLib.Jobs
 
             #endregion
 
+            Utils.Trace("Initiating job... {0}", JobName);
+            TextBuffer.WriteLine(string.Format("Initiating... {0}", JobName));
+
             ProcessModelContext context = new ProcessModelContext();
             UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile, filesPath));
 
             try
             {
-                // Stablish comunication with server
+                Utils.Trace("Stablishin comunication with server...");
+                TextBuffer.WriteLine("Stablishin comunication with server...");
                 Client.ConnectEndPoint(p_useSecurity);
-                Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
 
+                Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
+                TextBuffer.WriteLine(string.Format("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString()));
+
+                Utils.Trace("Getting node config...");
+                TextBuffer.WriteLine("Getting node config...");
                 string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);                
+                
                 Launch(Client, nodeIds);
             }
-            catch (Exception exception)
+            catch (OperationCanceledException ex)
             {
-                Utils.Trace("Error: " + exception.ToString());
+                Utils.Trace("Task was cancelled by user");
+                TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
+            }
+            catch (Exception ex)
+            {
+                Utils.Trace("Error: " + ex.ToString());
+                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }
             finally
             {
@@ -62,20 +80,7 @@ namespace OPCFoundation.ServerLib.Jobs
 
         public static void Launch(UaClient Client, string[] nodeIds)
         {
-            try
-            {
-                ReadNodes(Client, nodeIds);
-            }
-            catch (OperationCanceledException)
-            {
-                Utils.Trace("Task was cancelled by user");
-            }
-            catch (Exception ex)
-            {
-                Utils.Trace("Error: " + ex.ToString());
-            }           
-
-            Utils.Trace("Program completed");
+            ReadNodes(Client, nodeIds);
         }        
 
         internal static void ReadNodes(UaClient Prg, string[] nodeIds)
@@ -100,13 +105,14 @@ namespace OPCFoundation.ServerLib.Jobs
                 if (errors[i].Code != Opc.Ua.StatusCodes.Good)
                 {
                     Utils.Trace("Error: failed to read data");
+                    TextBuffer.WriteLine("Error: failed to read data");
                 }
                 else
                 {
                     NodeId node = variableIds[i];
                     Utils.Trace("Read value from node {0} is {1}", node , value);
-                }
-                
+                    TextBuffer.WriteLine(string.Format("Read value from node {0} is {1}", node, value));
+                }                
                 i++;
             }
         }

@@ -3,7 +3,7 @@ using Hangfire.Common;
 using Hangfire.Logging;
 using Newtonsoft.Json;
 
-namespace Hangfire.MvcApplication
+namespace Hangfire.OPC.Configuration.Logs
 {
     public class TextBufferLogProvider : ILogProvider
     {

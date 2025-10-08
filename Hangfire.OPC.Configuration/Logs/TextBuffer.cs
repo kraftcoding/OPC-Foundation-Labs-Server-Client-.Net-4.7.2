@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Hangfire.MvcApplication
+namespace Hangfire.OPC.Configuration.Logs
 {
     public static class TextBuffer
     {

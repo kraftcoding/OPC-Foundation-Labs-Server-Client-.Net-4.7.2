@@ -1,7 +1,7 @@
-﻿using OPCFoundation.ServerLib.Constants;
+﻿using Hangfire.OPC.JobLib.Constants;
 using System.IO;
 
-namespace OPCFoundation.ServerLib.Init
+namespace Hangfire.OPC.JobLib.Init
 {
     public static class JobInit
     {

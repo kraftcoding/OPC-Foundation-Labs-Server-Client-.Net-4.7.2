@@ -1,14 +1,16 @@
 ﻿using DB.ModelLib.Managers;
-using OPCFoundation.ServerLib.Init;
+using Hangfire.OPC.Configuration.Logs;
+using Hangfire.OPC.JobLib.Base;
+using Hangfire.OPC.JobLib.Init;
 using Opc.Ua;
 using OPCFoundation.ClientLib.Client;
 using OPCFoundation.ClientLib.Helpers;
 using System;
 using System.Collections.Generic;
 
-namespace OPCFoundation.ServerLib.Jobs
+namespace Hangfire.OPC.JobLib.Jobs
 {
-    public static class NodeWriteClientJob
+    public class NodeWriteClientJob : JobBase
     {
         public static string JobName = "OPC UA Node Write Client";
 
@@ -16,8 +18,7 @@ namespace OPCFoundation.ServerLib.Jobs
         /// The main entry point for the application.
         /// </summary>        
         public static void Init(string configFile, string filesPath)
-        {    
-
+        { 
             #region Global variables
 
                 //Params
@@ -44,15 +45,29 @@ namespace OPCFoundation.ServerLib.Jobs
 
             try
             {
-                // Stablish comunication with server
+                Utils.Trace("Stablishin comunication with server...");
+                TextBuffer.WriteLine("Stablishin comunication with server...");
                 Client.ConnectEndPoint(p_useSecurity);
-                Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());                
+
+                Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
+                TextBuffer.WriteLine(string.Format("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString()));
+
+                Utils.Trace("Getting node config...");
+                TextBuffer.WriteLine("Getting node config...");
                 string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);                
+                
                 Launch(Client, nodeIds); 
             }
-            catch (Exception exception)
+            catch (OperationCanceledException ex)
             {
-                Utils.Trace("Error: " + exception.ToString());
+                Utils.Trace("Task was cancelled by user");
+                TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
+            }
+            catch (Exception ex)
+            {
+                Utils.Trace("Error: " + ex.ToString());
+                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }
             finally
             {
@@ -62,14 +77,7 @@ namespace OPCFoundation.ServerLib.Jobs
 
         public static void Launch(UaClient Client, string[] nodeIds)
         {
-            try
-            {                
-                WriteNodes(Client, nodeIds);
-            }            
-            catch (Exception ex)
-            {
-                Utils.Trace("Error: " + ex.ToString());
-            }
+            WriteNodes(Client, nodeIds);
         }      
 
         internal static void WriteNodes(UaClient Prg, string[] nodeIds)
@@ -81,27 +89,16 @@ namespace OPCFoundation.ServerLib.Jobs
                 i++;
             }            
         }
-
-        // Get type of variable in OPC Server which should be written and cast the value before actually writing it        /
+                
         internal static void WriteValue(UaClient Prg, NodeId nodeId)
         {
             try
-            {
-                // Read the node you want to write to
+            {   
                 DataValue nodeToWrIteTo = Prg.m_session.ReadValue(nodeId);
-
-                //Type type = GetSystemType(Prg.m_session, nodeId);
-
-                ////// Get type of the specific variable you want to write 
-                BuiltInType type = nodeToWrIteTo.WrappedValue.TypeInfo.BuiltInType;
-
-                ////// Get the corresponding C# datatype
+                
+                BuiltInType type = nodeToWrIteTo.WrappedValue.TypeInfo.BuiltInType;                
                 Type csType = Type.GetType($"System.{type}");
-
-                ////// Cast the value
                 var castedValue = Convert.ChangeType(DataTypesHelper.GetNewValue(type), csType);
-
-                // Create a WriteValue object with the new value
                 var writeValue = new WriteValue
                 {
                     NodeId = nodeId,
@@ -109,19 +106,19 @@ namespace OPCFoundation.ServerLib.Jobs
                     Value = new DataValue(new Variant(castedValue))
                 };
 
-                // Write the new value to the node
-                // new RequestHeader() if needed
                 Prg.m_session.Write(null, new WriteValueCollection { writeValue }, out StatusCodeCollection statusCodeCollection, out DiagnosticInfoCollection diagnosticInfo);
 
-                // Check the results to make sure the write succeeded
                 if (statusCodeCollection[0].Code != Opc.Ua.StatusCodes.Good)
                 {
-                    Utils.Trace("Error: failed to write data");
+                    Utils.Trace("Error: failed to write data");                    
+                    TextBuffer.WriteLine("Error: failed to write data");
                 }
             }
             catch (Exception ex)
             {
                 Utils.Trace("Error: " + ex.ToString());
+                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }
         }
     }

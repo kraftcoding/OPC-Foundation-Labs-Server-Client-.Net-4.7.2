@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "extern", "extern", "{BE09FE
 		extern-bin\Opc.Ua.ComInterop.dll = extern-bin\Opc.Ua.ComInterop.dll
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.OPC.Configuration", "Hangfire.OPC.Configuration\Hangfire.OPC.Configuration.csproj", "{7390D83E-123A-41B9-8300-8432BA458FFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7390D83E-123A-41B9-8300-8432BA458FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7390D83E-123A-41B9-8300-8432BA458FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7390D83E-123A-41B9-8300-8432BA458FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7390D83E-123A-41B9-8300-8432BA458FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{5FC8CE05-FBF5-49F3-823C-157DD529FDB5} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
 		{7348AB0A-C176-4F9E-B382-CA8185B0506D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{BE09FEE4-8891-458F-8E3C-2CFE745AEE19} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7390D83E-123A-41B9-8300-8432BA458FFF} = {980D5CDB-23BB-4F2F-B2C2-F45D622E9ACA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA41AE0D-234E-4311-AC9F-AE8F280F56C5}

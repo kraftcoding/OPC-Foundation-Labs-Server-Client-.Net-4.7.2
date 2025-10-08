@@ -1,10 +1,9 @@
-﻿using Hangfire;
-using OPCFoundation.ServerLib.Model;
+﻿using Hangfire.OPC.Configuration.Model;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OPCFoundation.ServerLib.Interfaces
+namespace Hangfire.OPC.JobLib.Interfaces
 {
     public interface ITestService
     {

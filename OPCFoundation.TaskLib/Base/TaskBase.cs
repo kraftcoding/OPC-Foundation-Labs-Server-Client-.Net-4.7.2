@@ -5,15 +5,15 @@ namespace OPCFoundation.TaskLib.Base
 {
     public class TaskBase
     {
-        public Guid ProcessId;
+        public Guid TaskId;
         public TaskBase() 
         {
-            ProcessId = Guid.NewGuid();
+            TaskId = Guid.NewGuid();
         }
 
-        public void Initialize()
-        {
-            Utils.Trace("Process ID is {0}", ProcessId);
-        }
+        //public void Initialize()
+        //{
+        //    Utils.Trace("Process ID is {0}", TaskId);
+        //}
     }
 }
