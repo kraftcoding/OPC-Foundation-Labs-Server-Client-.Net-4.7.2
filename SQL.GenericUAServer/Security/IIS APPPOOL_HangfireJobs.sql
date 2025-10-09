@@ -1,0 +1,2 @@
+﻿CREATE USER [IIS APPPOOL\HangfireJobs] FOR LOGIN [IIS APPPOOL\HangfireJobs];
+
