@@ -21,7 +21,7 @@ namespace Hangfire.OPC.JobLib.Jobs
         /// </summary>        
         public static void Init(string configFile, string filesPath)
         {
-            Utils.Trace("Initiating job... {0}", JobName);
+            //Utils.Trace("Initiating job... {0}", JobName);
             TextBuffer.WriteLine(string.Format("Initiating job... {0}", JobName));
 
             try
@@ -34,31 +34,31 @@ namespace Hangfire.OPC.JobLib.Jobs
                 
                 application.Start(new UaServer(false)); // if true, loads default nodes from code with simulated data
                 
-                Utils.Trace("End points: ");
+                //Utils.Trace("End points: ");
                 TextBuffer.WriteLine("End points: ");
                 foreach (var ep in application.ApplicationConfiguration.ServerConfiguration.BaseAddresses)
                 {
-                    Utils.Trace("   " + ep);
+                    //Utils.Trace("   " + ep);
                     TextBuffer.WriteLine(string.Format("   {0}", ep));
                 }
 
                 string taskname = "ServerTask";
-                Utils.Trace("Launching task... {0}", taskname);
+                //Utils.Trace("Launching task... {0}", taskname);
                 TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));                
                 ServerTask.Launch(application, 10000, taskname, tokenSrc);
             }
             catch (OperationCanceledException ex)
             {
-                Utils.Trace("Task was cancelled by user");
+                //Utils.Trace("Task was cancelled by user");
                 TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
             }
             catch (Exception ex)
             {
-                Utils.Trace("Error: " + ex.ToString());
+                //Utils.Trace("Error: " + ex.ToString());
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
 
-                Utils.Trace("Reinitiating job... {0}", JobName);
+                //Utils.Trace("Reinitiating job... {0}", JobName);
                 TextBuffer.WriteLine(string.Format("Reinitiating... {0}", JobName));
 
                 Stop();
@@ -66,7 +66,7 @@ namespace Hangfire.OPC.JobLib.Jobs
             }
             finally
             {
-                Utils.Trace("Program completed");
+                //Utils.Trace("Program completed");
                 TextBuffer.WriteLine("Program completed");                
             }
         }
@@ -75,7 +75,7 @@ namespace Hangfire.OPC.JobLib.Jobs
         {
             try
             {
-                Utils.Trace("Stoping JOB... {0}", JobName);
+                //Utils.Trace("Stoping JOB... {0}", JobName);
                 TextBuffer.WriteLine(string.Format("Stoping... {0}", JobName));
                 tokenSrc.Cancel();
                 tokenSrc.Dispose();
@@ -83,7 +83,7 @@ namespace Hangfire.OPC.JobLib.Jobs
             }
             catch (Exception ex)
             {
-                Utils.Trace("Error: " + ex.ToString());
+                //Utils.Trace("Error: " + ex.ToString());
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }            

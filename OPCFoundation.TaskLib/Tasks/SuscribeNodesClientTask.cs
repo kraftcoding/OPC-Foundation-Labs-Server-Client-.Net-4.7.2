@@ -24,8 +24,6 @@ namespace OPCFoundation.TaskLib.Tasks
                 SubProcedure(client, msec);
             }
             while (!token.IsCancellationRequested);
-
-            Utils.Trace("Task completed successfully");
         }
 
         internal void SubProcedure(UaClient client, int msec)

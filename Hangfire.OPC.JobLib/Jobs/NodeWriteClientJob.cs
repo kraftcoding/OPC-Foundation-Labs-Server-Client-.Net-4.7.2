@@ -45,30 +45,30 @@ namespace Hangfire.OPC.JobLib.Jobs
 
             try
             {
-                Utils.Trace("Stablishin comunication with server...");
+                //Utils.Trace("Stablishin comunication with server...");
                 TextBuffer.WriteLine("Stablishin comunication with server...");
                 Client.ConnectEndPoint(p_useSecurity);
 
-                Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
+                //Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
                 TextBuffer.WriteLine(string.Format("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString()));
 
-                Utils.Trace("Getting node config...");
+                //Utils.Trace("Getting node config...");
                 TextBuffer.WriteLine("Getting node config...");
                 string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);
 
                 string taskname = "WriteNodes";
-                Utils.Trace("Launching task... {0}", taskname);
+                //Utils.Trace("Launching task... {0}", taskname);
                 TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));
                 Launch(Client, nodeIds); 
             }
             catch (OperationCanceledException ex)
             {
-                Utils.Trace("Task was cancelled by user");
+                //Utils.Trace("Task was cancelled by user");
                 TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
             }
             catch (Exception ex)
             {
-                Utils.Trace("Error: " + ex.ToString());
+                //Utils.Trace("Error: " + ex.ToString());
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }
@@ -113,13 +113,13 @@ namespace Hangfire.OPC.JobLib.Jobs
 
                 if (statusCodeCollection[0].Code != Opc.Ua.StatusCodes.Good)
                 {
-                    Utils.Trace("Error: failed to write data");                    
+                    //Utils.Trace("Error: failed to write data");                    
                     TextBuffer.WriteLine("Error: failed to write data");
                 }
             }
             catch (Exception ex)
             {
-                Utils.Trace("Error: " + ex.ToString());
+                //Utils.Trace("Error: " + ex.ToString());
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }
