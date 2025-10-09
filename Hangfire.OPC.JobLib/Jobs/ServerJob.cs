@@ -58,7 +58,11 @@ namespace Hangfire.OPC.JobLib.Jobs
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
 
+                Utils.Trace("Reinitiating job... {0}", JobName);
+                TextBuffer.WriteLine(string.Format("Reinitiating... {0}", JobName));
+
                 Stop();
+                Init(configFile, filesPath);
             }
             finally
             {
@@ -80,8 +84,8 @@ namespace Hangfire.OPC.JobLib.Jobs
             catch (Exception ex)
             {
                 Utils.Trace("Error: " + ex.ToString());
-                //TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
-                //TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
+                TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
+                TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }            
         }
     }

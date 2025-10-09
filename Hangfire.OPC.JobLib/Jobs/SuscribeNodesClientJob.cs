@@ -113,6 +113,8 @@ namespace Hangfire.OPC.JobLib.Jobs
                 TextBuffer.WriteLine(string.Format("Stoping... {0}", JobName));
                 tokenSrc.Cancel();
                 tokenSrc.Dispose();
+
+                //for susbscriber is not necesary
                 //application.Stop();
             }
             catch (Exception ex)
