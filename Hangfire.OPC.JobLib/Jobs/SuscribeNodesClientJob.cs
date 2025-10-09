@@ -18,14 +18,13 @@ namespace Hangfire.OPC.JobLib.Jobs
         public static string JobName = "OPC UA Subscription Client";
         public static ApplicationInstance application;        
         public static CancellationTokenSource tokenSrc;
-        
+        public static UaClient Client = null;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>  
         public static void Init(string configFile, string filesPath)
         {
-            UaClient Client = null;
-
             #region variables
 
             //Params
@@ -88,7 +87,11 @@ namespace Hangfire.OPC.JobLib.Jobs
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
 
+                Utils.Trace("Reinitiating job... {0}", JobName);
+                TextBuffer.WriteLine(string.Format("Reinitiating... {0}", JobName));
+
                 Stop();
+                Init(configFile, filesPath);
             }
             finally
             {
@@ -96,14 +99,17 @@ namespace Hangfire.OPC.JobLib.Jobs
                 Utils.Trace("Program completed");
                 TextBuffer.WriteLine("Program completed");
             }
-
         }
 
         public static void Stop()
         {
             try
             {
-                Utils.Trace("Stoping JOB... {0}", JobName);
+                Utils.Trace("Disconecting end-point...");
+                TextBuffer.WriteLine("Disconecting end-point...");
+                if (Client != null) Client?.DisconnectEndPoint();
+
+                Utils.Trace("Stoping job... {0}", JobName);
                 TextBuffer.WriteLine(string.Format("Stoping... {0}", JobName));
                 tokenSrc.Cancel();
                 tokenSrc.Dispose();
