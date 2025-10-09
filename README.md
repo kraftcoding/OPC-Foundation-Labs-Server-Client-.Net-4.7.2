@@ -5,14 +5,14 @@ The solution is divided in the next modules or assemblies:
 
 * Client-server layer
 * DB.ModelLib : Database interaction context (EntityFramework)
-** Hangfire.OPC.Configuration : Hangfire default Job configuration
-** Hangfire.OPC.JobLib : Job definitions managed by the Hangfire process
-** OPCFoundation.ClientLib : Opc client procedures and clases to interact with the SDK / Stack
-** OPCFoundation.ServerLib : Opc server procedures and clases to interact with the SDK / Stack 
-** OPCFoundation.TaskLib : Tasks managed by the jobs
+*   Hangfire.OPC.Configuration : Hangfire default Job configuration
+*   Hangfire.OPC.JobLib : Job definitions managed by the Hangfire process
+*   OPCFoundation.ClientLib : Opc client procedures and clases to interact with the SDK / Stack
+*   OPCFoundation.ServerLib : Opc server procedures and clases to interact with the SDK / Stack 
+*   OPCFoundation.TaskLib : Tasks managed by the jobs
 * Database and model
-** Model.GenericUAServer : GenericUAServer DB model to store the Job process and related data  
-** SQL.GenericUAServer : Database to store node data
+*   Model.GenericUAServer : GenericUAServer DB model to store the Job process and related data  
+*   SQL.GenericUAServer : Database to store node data
 
 ## Requirements
 
