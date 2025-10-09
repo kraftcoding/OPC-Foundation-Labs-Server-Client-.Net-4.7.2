@@ -60,10 +60,8 @@
     <Compile Include="Base\TaskBase.cs" />
     <Compile Include="Helpers\ProcessHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Tasks\NodeReadClientTask.cs.bck" />
     <Compile Include="Tasks\SuscribeNodesClientTask.cs" />
     <Compile Include="Tasks\ServerTask.cs" />
-    <None Include="Tasks\NodeWriteClientTask.cs.bck" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DB.ModelLib\DB.ModelLib.csproj">
