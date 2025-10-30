@@ -44,8 +44,7 @@ namespace Hangfire.OPC.JobLib.Jobs
             subsDictionary.Add("PublishingEnabled", "true");
 
             #endregion
-
-            //Utils.Trace("Initiating job... {0}", JobName);
+                       
             TextBuffer.WriteLine(string.Format("Initiating... {0}", JobName));
 
             try
@@ -53,41 +52,34 @@ namespace Hangfire.OPC.JobLib.Jobs
                 tokenSrc = new CancellationTokenSource();
                 ProcessModelContext context = new ProcessModelContext();
                 Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile, filesPath));
-                                
-                //Utils.Trace("Stablishin comunication with server...");
+                               
                 TextBuffer.WriteLine("Stablishin comunication with server...");
                 Client.ConnectEndPoint(p_useSecurity);
-           
-                //Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
+                       
                 TextBuffer.WriteLine(string.Format("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString()));
-
-                //Utils.Trace("Getting node config...");
+                           
                 TextBuffer.WriteLine("Getting node config...");
                 string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);
-                
-                //Utils.Trace("Creating subscriptions...");
+                                
                 TextBuffer.WriteLine("Creating subscriptions...");
                 foreach (var nodeId in nodeIds)
                     Client.CreateSubscription(nodeId, "NODE #" + nodeId + "#", subsDictionary, MonitoringMode.Reporting);
 
                 string taskname = "SuscribeNodesClientTask";
-                //Utils.Trace("Launching task... {0}", taskname);
+                
                 TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));
                 SuscribeNodesClientTask ClientTsk = new SuscribeNodesClientTask();
                 ClientTsk.Launch(Client, 60000, tokenSrc);
             }
             catch (OperationCanceledException ex)
-            {
-                //Utils.Trace("Task was cancelled by user");
+            {                
                 TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
             }
             catch (Exception ex)
-            {
-                //Utils.Trace("Error: " + ex.ToString());
+            {             
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
-
-                //Utils.Trace("Reinitiating job... {0}", JobName);
+                             
                 TextBuffer.WriteLine(string.Format("Reinitiating... {0}", JobName));
 
                 Stop();
@@ -95,8 +87,12 @@ namespace Hangfire.OPC.JobLib.Jobs
             }
             finally
             {
-                Client?.DisconnectEndPoint();
-                //Utils.Trace("Program completed");
+                TextBuffer.WriteLine(string.Format("Disconnecting end-point"));
+                Client.DisconnectEndPoint();
+
+                TextBuffer.WriteLine(string.Format("Closing session"));
+                Client.m_session?.Close();
+
                 TextBuffer.WriteLine("Program completed");
             }
         }
@@ -104,22 +100,16 @@ namespace Hangfire.OPC.JobLib.Jobs
         public static void Stop()
         {
             try
-            {
-                //Utils.Trace("Disconecting end-point...");
+            {                
                 TextBuffer.WriteLine("Disconecting end-point...");
                 if (Client != null) Client?.DisconnectEndPoint();
-
-                //Utils.Trace("Stoping job... {0}", JobName);
+                                
                 TextBuffer.WriteLine(string.Format("Stoping... {0}", JobName));
                 tokenSrc.Cancel();
-                tokenSrc.Dispose();
-
-                //for susbscriber is not necesary
-                //application.Stop();
+                tokenSrc.Dispose();             
             }
             catch (Exception ex)
-            {
-                //Utils.Trace("Error: " + ex.ToString());
+            {                
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }

@@ -38,45 +38,45 @@ namespace Hangfire.OPC.JobLib.Jobs
             subsDictionary.Add("PublishingEnabled", "true");
 
             #endregion
-
-            //Utils.Trace("Initiating job... {0}", JobName);
+                        
             TextBuffer.WriteLine(string.Format("Initiating... {0}", JobName));
 
             ProcessModelContext context = new ProcessModelContext();
             UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile, filesPath));
 
             try
-            {
-                //Utils.Trace("Stablishin comunication with server...");
+            {                
                 TextBuffer.WriteLine("Stablishin comunication with server...");
                 Client.ConnectEndPoint(p_useSecurity);
-
-                //Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
+                
                 TextBuffer.WriteLine(string.Format("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString()));
-
-                //Utils.Trace("Getting node config...");
+             
                 TextBuffer.WriteLine("Getting node config...");
                 string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);
 
                 string taskname = "ReadNodes";
-                //Utils.Trace("Launching task... {0}", taskname);
+             
                 TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));
                 Launch(Client, nodeIds);
             }
             catch (OperationCanceledException ex)
-            {
-                //Utils.Trace("Task was cancelled by user");
+            {             
                 TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
             }
             catch (Exception ex)
-            {
-                //Utils.Trace("Error: " + ex.ToString());
+            {                
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }
             finally
             {
+                TextBuffer.WriteLine(string.Format("Disconnecting end-point"));
                 Client.DisconnectEndPoint();
+
+                TextBuffer.WriteLine(string.Format("Closing session"));
+                Client.m_session?.Close();
+
+                TextBuffer.WriteLine("Program completed");
             }
         }
     
@@ -106,14 +106,12 @@ namespace Hangfire.OPC.JobLib.Jobs
             foreach (var value in values)
             {
                 if (errors[i].Code != Opc.Ua.StatusCodes.Good)
-                {
-                    //Utils.Trace("Error: failed to read data");
+                {                    
                     TextBuffer.WriteLine("Error: failed to read data");
                 }
                 else
                 {
-                    NodeId node = variableIds[i];
-                    //Utils.Trace("Read value from node {0} is {1}", node , value);
+                    NodeId node = variableIds[i];                 
                     TextBuffer.WriteLine(string.Format("Read value from node {0} is {1}", node, value));
                 }                
                 i++;

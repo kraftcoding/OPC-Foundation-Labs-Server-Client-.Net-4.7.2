@@ -38,43 +38,43 @@ namespace Hangfire.OPC.JobLib.Jobs
                 subsDictionary.Add("PublishingEnabled", "true");
 
                 #endregion
-
-            // create program controller
+                        
             ProcessModelContext context = new ProcessModelContext();
             UaClient Client = new UaClient(p_baseAddressId, appName, appConfig, context, JobInit.GetConfigFilePath(configFile, filesPath));
 
             try
-            {
-                //Utils.Trace("Stablishin comunication with server...");
+            {                
                 TextBuffer.WriteLine("Stablishin comunication with server...");
                 Client.ConnectEndPoint(p_useSecurity);
-
-                //Utils.Trace("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString());
+                
                 TextBuffer.WriteLine(string.Format("Connected to: " + Client.m_session.Endpoint.EndpointUrl.ToString()));
-
-                //Utils.Trace("Getting node config...");
+                
                 TextBuffer.WriteLine("Getting node config...");
                 string[] nodeIds = ConfigHelper.GetConfigValues(Client, ns);
 
                 string taskname = "WriteNodes";
-                //Utils.Trace("Launching task... {0}", taskname);
+                
                 TextBuffer.WriteLine(string.Format("Launching task... {0}", taskname));
                 Launch(Client, nodeIds); 
             }
             catch (OperationCanceledException ex)
-            {
-                //Utils.Trace("Task was cancelled by user");
+            {                
                 TextBuffer.WriteLine(string.Format("Task was cancelled by user"));
             }
             catch (Exception ex)
-            {
-                //Utils.Trace("Error: " + ex.ToString());
+            {                
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
             }
             finally
             {
+                TextBuffer.WriteLine(string.Format("Disconnecting end-point"));
                 Client.DisconnectEndPoint();
+
+                TextBuffer.WriteLine(string.Format("Closing session"));
+                Client.m_session?.Close();
+
+                TextBuffer.WriteLine("Program completed");
             }
         }
 
@@ -83,23 +83,23 @@ namespace Hangfire.OPC.JobLib.Jobs
             WriteNodes(Client, nodeIds);
         }      
 
-        internal static void WriteNodes(UaClient Prg, string[] nodeIds)
+        internal static void WriteNodes(UaClient Client, string[] nodeIds)
         {
             int i = 0;
             foreach (var nodeId in nodeIds)
             {
-                WriteValue(Prg, new NodeId(nodeId));
+                WriteValue(Client, new NodeId(nodeId));
                 i++;
             }            
         }
-                
-        internal static void WriteValue(UaClient Prg, NodeId nodeId)
+
+        internal static void WriteValue(UaClient Client, NodeId nodeId)
         {
             try
-            {   
-                DataValue nodeToWrIteTo = Prg.m_session.ReadValue(nodeId);
-                
-                BuiltInType type = nodeToWrIteTo.WrappedValue.TypeInfo.BuiltInType;                
+            {
+                DataValue nodeToWrIteTo = Client.m_session.ReadValue(nodeId);
+
+                BuiltInType type = nodeToWrIteTo.WrappedValue.TypeInfo.BuiltInType;
                 Type csType = Type.GetType($"System.{type}");
                 var castedValue = Convert.ChangeType(DataTypesHelper.GetNewValue(type), csType);
                 var writeValue = new WriteValue
@@ -109,20 +109,18 @@ namespace Hangfire.OPC.JobLib.Jobs
                     Value = new DataValue(new Variant(castedValue))
                 };
 
-                Prg.m_session.Write(null, new WriteValueCollection { writeValue }, out StatusCodeCollection statusCodeCollection, out DiagnosticInfoCollection diagnosticInfo);
+                Client.m_session.Write(null, new WriteValueCollection { writeValue }, out StatusCodeCollection statusCodeCollection, out DiagnosticInfoCollection diagnosticInfo);
 
                 if (statusCodeCollection[0].Code != Opc.Ua.StatusCodes.Good)
-                {
-                    //Utils.Trace("Error: failed to write data");                    
+                {                    
                     TextBuffer.WriteLine("Error: failed to write data");
                 }
             }
             catch (Exception ex)
-            {
-                //Utils.Trace("Error: " + ex.ToString());
+            {                
                 TextBuffer.WriteLine(string.Format("Error: {0}", ex.ToString()));
                 TextBuffer.WriteLine(string.Format("StacTrace: {0}", ex.StackTrace));
-            }
+            }           
         }
     }
 }
