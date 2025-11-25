@@ -1,4 +1,4 @@
-# OPC-Foundation-Labs-Server-Client-.Net-4.8
+# OPC-Foundation-Labs-Server-Client-.Net-4.7.2
 
 This solution contains a standard .NET 4.7.2 projects regarding the client-server layer to interact with OPC Foundation together with the database and model projects to store data.
 The solution is divided in the next modules or assemblies:
