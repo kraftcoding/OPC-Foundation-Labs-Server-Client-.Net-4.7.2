@@ -50,6 +50,10 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SQL.HangfireMvcApplication", "SQL.HangfireMvcApplication\SQL.HangfireMvcApplication.sqlproj", "{08E9D70F-5AD7-4805-89B8-5490AFD314D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F23FAC53-0AC9-4D94-8FC3-048E2BAF6288}"
+	ProjectSection(SolutionItems) = preProject
+		docs\OPC Foundation Client-Server Solution - Technical Document.odt = docs\OPC Foundation Client-Server Solution - Technical Document.odt
+		docs\OPC Foundation Client-Server Solution - Technical Document.pdf = docs\OPC Foundation Client-Server Solution - Technical Document.pdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
